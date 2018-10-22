@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:layout_marginLeft="2dp"
+    android:layout_marginRight="2dp"
+    android:layout_marginTop="2dp"
+    android:layout_marginBottom="2dp"
+    app:cardCornerRadius="4dp"
+    app:cardElevation="4dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="110dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:paddingTop="3dp">
+
+        <ImageView
+            android:id="@+id/comm_recy_vert_img"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="5"
+            android:scaleType="fitXY"
+            android:src="@drawable/comm_recy_vert_2"/>
+        <TextView
+            android:id="@+id/comm_recy_vert_text"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="6"
+            android:padding="13dp"
+            android:gravity="center"
+            android:text="刷睫毛的三种方法：\n1.直接从睫毛根部往外拉，让睫毛变纤长2.用z字形刷睫毛ddddd"
+            android:maxLines="3"
+            android:ellipsize="end"/>
+
+    </LinearLayout>
+</android.support.v7.widget.CardView>

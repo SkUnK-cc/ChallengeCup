@@ -1,0 +1,63 @@
+<resources>
+    <string name="app_name">ChallengeCup</string>
+
+    <string-array name="home_list">
+        <item>@drawable/home_list_1</item>
+        <item>@drawable/home_list_2</item>
+        <item>@drawable/home_list_2</item>
+    </string-array>
+
+    <string-array name="home_recycler">
+        <item>@drawable/home_recycler_1</item>
+        <item>@drawable/home_recycler_2</item>
+        <item>@drawable/home_recycler_3</item>
+        <item>@drawable/home_recycler_4</item>
+        <item>@drawable/home_recycler_5</item>
+        <item>@drawable/home_recycler_6</item>
+    </string-array>
+
+    <string-array name="comm_recy_hori">
+        <item>@drawable/comm_recy_hori_1</item>
+        <item>@drawable/comm_recy_hori_2</item>
+        <item>@drawable/comm_recy_hori_3</item>
+        <item>@drawable/comm_recy_hori_4</item>
+    </string-array>
+
+    <string-array name="comm_recy_vert">
+        <item>@drawable/comm_recy_vert_1</item>
+        <item>@drawable/comm_recy_vert_2</item>
+        <item>@drawable/comm_recy_vert_3</item>
+    </string-array>
+
+    <string-array name="daily_recy_hori">
+        <item>@drawable/daily_recy_hori_1</item>
+        <item>@drawable/daily_recy_hori_2</item>
+        <item>@drawable/daily_recy_hori_3</item>
+        <item>@drawable/daily_recy_hori_3</item>
+    </string-array>
+
+    <string-array name="daily_recy_vert_img">
+        <item>@drawable/daily_recy_vert_5</item>
+        <item>@drawable/daily_recy_vert_5</item>
+        <item>@drawable/daily_recy_vert_5</item>
+        <item>@drawable/daily_recy_vert_5</item>
+        <item>@drawable/daily_recy_vert_5</item>
+        <item>@drawable/daily_recy_vert_5</item>
+    </string-array>
+    <string-array name="daily_recy_vert_price">
+        <item>¥45</item>
+        <item>¥45</item>
+        <item>¥45</item>
+        <item>¥45</item>
+        <item>¥45</item>
+        <item>¥45</item>
+    </string-array>
+    <string-array name="daily_recy_vert_introduce">
+        <item>日本Loshi北海道马油洗面奶 130g</item>
+        <item>日本Loshi北海道马油洗面奶 130g</item>
+        <item>日本Loshi北海道马油洗面奶 130g</item>
+        <item>日本Loshi北海道马油洗面奶 130g</item>
+        <item>日本Loshi北海道马油洗面奶 130g</item>
+        <item>日本Loshi北海道马油洗面奶 130g</item>
+    </string-array>
+</resources>

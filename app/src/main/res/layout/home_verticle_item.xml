@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="200dp"
+    android:layout_margin="3dp"
+    android:background="@android:color/white">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingTop="3dp"
+        android:paddingRight="3dp"
+        android:paddingLeft="3dp">
+        <ImageView
+            android:id="@+id/iv_home_verticle_item"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:src="@drawable/home_recycler_1"
+            android:scaleType="fitXY"/>
+        <TextView
+            android:id="@+id/tv_home_verticle_item"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="韩国芝兰深层补水面膜"
+            android:maxLines="2"
+            android:ellipsize="end"
+            android:paddingLeft="34dp"
+            android:paddingTop="3dp"/>
+
+    </LinearLayout>
+    <ImageView
+        android:layout_width="34dp"
+        android:layout_height="34dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/toprighttriangle"
+        android:scaleType="fitXY"/>
+    <ImageView
+        android:layout_width="34dp"
+        android:layout_height="34dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:src="@drawable/botlefttriangle"/>
+
+</RelativeLayout>
