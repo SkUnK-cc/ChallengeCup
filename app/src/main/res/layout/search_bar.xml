@@ -14,7 +14,6 @@
         <ImageView
             android:layout_width="50dp"
             android:layout_height="match_parent"
-            android:src="@drawable/back_home"
             android:padding="6dp"/>
         <EditText
             android:id="@+id/search_edit"

@@ -26,22 +26,23 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"/>
             <RelativeLayout
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:layout_marginLeft="4dp"
                 android:layout_marginRight="4dp">
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:layout_width="@dimen/market_circle_img_diameter"
-                    android:layout_height="@dimen/market_circle_img_diameter"
+                <com.example.hp.challengecup.custom.MyCircleImageView
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
                     android:src="@drawable/daily_circle_1" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="洗面奶"
                     android:layout_centerHorizontal="true"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginBottom="10dp"/>
+                    android:layout_marginTop="40dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"/>
             </RelativeLayout>
             <RelativeLayout
                 android:layout_width="wrap_content"
@@ -49,70 +50,56 @@
                 android:layout_marginLeft="4dp"
                 android:layout_marginRight="4dp">
                 <com.example.hp.challengecup.custom.MyCircleImageView
-                    android:layout_width="90dp"
-                    android:layout_height="90dp"
-                    android:src="@drawable/daily_circle_1" />
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:src="@drawable/daily_circle_2" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="洗面奶"
+                    android:text="化妆水"
                     android:layout_centerHorizontal="true"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginBottom="10dp"/>
+                    android:layout_marginTop="40dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"/>
             </RelativeLayout>
             <RelativeLayout
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:layout_marginLeft="4dp"
                 android:layout_marginRight="4dp">
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:layout_width="@dimen/market_circle_img_diameter"
-                    android:layout_height="@dimen/market_circle_img_diameter"
-                    android:src="@drawable/daily_circle_1" />
+                <com.example.hp.challengecup.custom.MyCircleImageView
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:src="@drawable/daily_circle_3" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="洗面奶"
+                    android:text="乳液"
                     android:layout_centerHorizontal="true"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginBottom="10dp"/>
+                    android:layout_marginTop="40dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"/>
             </RelativeLayout>
             <RelativeLayout
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:layout_marginLeft="4dp"
                 android:layout_marginRight="4dp">
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:layout_width="@dimen/market_circle_img_diameter"
-                    android:layout_height="@dimen/market_circle_img_diameter"
-                    android:src="@drawable/daily_circle_1" />
+                <com.example.hp.challengecup.custom.MyCircleImageView
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:src="@drawable/daily_circle_4" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="洗面奶"
+                    android:text="隔离"
                     android:layout_centerHorizontal="true"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginBottom="10dp"/>
-            </RelativeLayout>
-            <RelativeLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginLeft="4dp"
-                android:layout_marginRight="4dp">
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:layout_width="@dimen/market_circle_img_diameter"
-                    android:layout_height="@dimen/market_circle_img_diameter"
-                    android:src="@drawable/daily_circle_1" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="洗面奶"
-                    android:layout_centerHorizontal="true"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginBottom="10dp"/>
+                    android:layout_marginTop="40dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"/>
             </RelativeLayout>
             <View
                 android:layout_width="0dp"

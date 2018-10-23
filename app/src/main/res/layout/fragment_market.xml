@@ -4,52 +4,66 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
+    <include layout="@layout/search_bar"/>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="40dp"
+        android:orientation="horizontal"
+        android:background="@drawable/bg_market_nav">
         <TextView
+            android:id="@+id/market_nav_dailycare"
             android:layout_width="0dp"
             android:layout_height="40dp"
             android:layout_weight="1.5"
             android:text="日常护理"
             android:gravity="center"
-            android:textSize="16sp"/>
+            android:textSize="16sp"
+            android:textColor="@color/selector_market_nav_textcolor"/>
         <TextView
+            android:id="@+id/market_nav_powderybottom"
             android:layout_width="0dp"
             android:layout_height="40dp"
             android:layout_weight="1"
             android:text="粉底"
             android:gravity="center"
-            android:textSize="16sp"/>
+            android:textSize="16sp"
+            android:textColor="@color/selector_market_nav_textcolor"/>
         <TextView
+            android:id="@+id/market_nav_blockdefect"
             android:layout_width="0dp"
             android:layout_height="40dp"
             android:layout_weight="1"
             android:text="遮瑕"
             android:gravity="center"
-            android:textSize="16sp"/>
+            android:textSize="16sp"
+            android:textColor="@color/selector_market_nav_textcolor"/>
         <TextView
+            android:id="@+id/market_nav_labialministry"
             android:layout_width="0dp"
             android:layout_height="40dp"
             android:layout_weight="1"
             android:text="唇部"
             android:gravity="center"
-            android:textSize="16sp"/>
+            android:textSize="16sp"
+            android:textColor="@color/selector_market_nav_textcolor"/>
         <TextView
+            android:id="@+id/market_nav_eye"
             android:layout_width="0dp"
             android:layout_height="40dp"
             android:layout_weight="1"
             android:text="眼部"
             android:gravity="center"
-            android:textSize="16sp"/>
+            android:textSize="16sp"
+            android:textColor="@color/selector_market_nav_textcolor"/>
         <TextView
+            android:id="@+id/market_nav_tools"
             android:layout_width="0dp"
             android:layout_height="40dp"
             android:layout_weight="1"
             android:text="工具"
             android:gravity="center"
-            android:textSize="16sp"/>
+            android:textSize="16sp"
+            android:textColor="@color/selector_market_nav_textcolor"/>
     </LinearLayout>
     <com.example.hp.challengecup.custom.CustomViewPager
         android:id="@+id/vp_market"

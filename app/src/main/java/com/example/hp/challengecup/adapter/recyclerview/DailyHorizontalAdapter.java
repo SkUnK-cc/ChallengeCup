@@ -2,6 +2,7 @@ package com.example.hp.challengecup.adapter.recyclerview;
 
 import android.content.Context;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.hp.challengecup.R;
 
@@ -16,5 +17,7 @@ public class DailyHorizontalAdapter extends CommonAdapter<DailyHorizontalItem> {
     public void convert(CommonViewHolder holder, DailyHorizontalItem dailyHorizontalItem) {
         ImageView imageView = holder.getView(R.id.daily_recy_hori_img);
         imageView.setImageResource(dailyHorizontalItem.imgId);
+        TextView textView = holder.getView(R.id.daily_recy_hori_text);
+        textView.setText(dailyHorizontalItem.introduce);
     }
 }

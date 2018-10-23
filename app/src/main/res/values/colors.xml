@@ -14,4 +14,7 @@
     <color name="main_nav_textcolor_unselected">#ffffff</color>
     <color name="main_nav_textcolor_selected">#d2b8c1</color>
     <color name="background">#e8ecef</color>
+    <color name="market_nav_textcolor_unselected">#ff000000</color>
+    <color name="market_nav_textcolor_selected">#86a3b1</color>
+    <color name="black">#000000</color>
 </resources>

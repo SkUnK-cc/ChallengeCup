@@ -33,31 +33,37 @@
         <item>@drawable/daily_recy_hori_1</item>
         <item>@drawable/daily_recy_hori_2</item>
         <item>@drawable/daily_recy_hori_3</item>
-        <item>@drawable/daily_recy_hori_3</item>
+        <item>@drawable/daily_recy_hori_4</item>
+    </string-array>
+    <string-array name="daily_recy_hori_introduce">
+        <item>日常洗护\n三部曲</item>
+        <item>化妆水\n有大秘密</item>
+        <item>乳液\n妙用</item>
+        <item>美白\n隔离霜</item>
     </string-array>
 
     <string-array name="daily_recy_vert_img">
+        <item>@drawable/daily_recy_vert_1</item>
+        <item>@drawable/daily_recy_vert_2</item>
+        <item>@drawable/daily_recy_vert_3</item>
+        <item>@drawable/daily_recy_vert_4</item>
         <item>@drawable/daily_recy_vert_5</item>
-        <item>@drawable/daily_recy_vert_5</item>
-        <item>@drawable/daily_recy_vert_5</item>
-        <item>@drawable/daily_recy_vert_5</item>
-        <item>@drawable/daily_recy_vert_5</item>
-        <item>@drawable/daily_recy_vert_5</item>
+        <item>@drawable/daily_recy_vert_6</item>
     </string-array>
     <string-array name="daily_recy_vert_price">
         <item>¥45</item>
-        <item>¥45</item>
-        <item>¥45</item>
-        <item>¥45</item>
-        <item>¥45</item>
-        <item>¥45</item>
+        <item>¥120</item>
+        <item>¥115</item>
+        <item>¥105</item>
+        <item>¥38</item>
+        <item>¥55</item>
     </string-array>
     <string-array name="daily_recy_vert_introduce">
         <item>日本Loshi北海道马油洗面奶 130g</item>
-        <item>日本Loshi北海道马油洗面奶 130g</item>
-        <item>日本Loshi北海道马油洗面奶 130g</item>
-        <item>日本Loshi北海道马油洗面奶 130g</item>
-        <item>日本Loshi北海道马油洗面奶 130g</item>
-        <item>日本Loshi北海道马油洗面奶 130g</item>
+        <item>城野医生亲研毛孔收缩收敛控油保湿化妆水...</item>
+        <item>苏秘时光能量     柔肤乳 130ml</item>
+        <item>霏丝佳DMT修复保湿乳 200ml</item>
+        <item>泰国beauty buffet Q10牛奶洗面奶100g</item>
+        <item>悦诗风吟绿茶深层补水保湿泡沫洗面奶150g</item>
     </string-array>
 </resources>

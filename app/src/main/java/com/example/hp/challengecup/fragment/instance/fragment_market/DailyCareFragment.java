@@ -65,9 +65,10 @@ public class DailyCareFragment extends BaseFragment {
 
     private void getHListData() {
         TypedArray hArray = getContext().getResources().obtainTypedArray(R.array.daily_recy_hori);
+        String[] introduce = getContext().getResources().getStringArray(R.array.daily_recy_hori_introduce);
         int len = hArray.length();
         for(int i=0;i<len;i++){
-            hList.add(new DailyHorizontalItem(hArray.getResourceId(i,0)));
+            hList.add(new DailyHorizontalItem(hArray.getResourceId(i,0),introduce[i]));
         }
         hArray.recycle();
     }
