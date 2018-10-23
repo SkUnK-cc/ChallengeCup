@@ -18,6 +18,8 @@ public class MyCircleImageView extends android.support.v7.widget.AppCompatImageV
     private Paint mPaint;
     private int mRadius;
     private float mScale;
+    private Matrix matrix;
+    private Bitmap bitmap;
     public MyCircleImageView(Context context) {
         super(context);
     }
@@ -43,10 +45,10 @@ public class MyCircleImageView extends android.support.v7.widget.AppCompatImageV
         super.onDraw(canvas);
         mPaint = new Paint();
         //获取bitmap
-        Bitmap bitmap = drawableToBitmap(getDrawable());
+        bitmap = drawableToBitmap(getDrawable());
         BitmapShader bitmapShader = new BitmapShader(bitmap, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP);
         mScale = (mRadius * 2.0f) / Math.min(bitmap.getHeight(),bitmap.getWidth());
-        Matrix matrix = new Matrix();
+        matrix = new Matrix();
         matrix.setScale(mScale,mScale);
         bitmapShader.setLocalMatrix(matrix);
         mPaint.setShader(bitmapShader);

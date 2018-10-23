@@ -60,7 +60,11 @@ public class CustomHomeScrollView extends ScrollView {
         height = inner.getMeasuredHeight() - bottomText.getMeasuredHeight() - getMeasuredHeight()+ DisplayUtil.dip2px(getContext(), 55);
 //        Log.e(TAG, "onScrollChanged: height = "+height);
         //这里要确保滚动到固定位置后不再滚动（转为layout），需要让它一直滚动到该位置
-        if(t>=height){
+        if(t>=height) {
+            scrollTo(0, height);
+        }else if(inner.getBottom() < normal.bottom){
+            //这里布局已经移动layout，并且手指正在使布局移回原位时，除了布局的移动，
+            // 还有滚动效果scroll，双重移动，会造成滚动速度太快，应该去掉scroll，使其保持在原位
             scrollTo(0,height);
         }
     }
@@ -82,6 +86,7 @@ public class CustomHomeScrollView extends ScrollView {
                 break;
             case MotionEvent.ACTION_UP:
                 if(getScrollY() == height && !normal.isEmpty()){
+                    Log.e(TAG, "disposeTouchEvent: action_up"+"resotre");
                     animation();
                 }
                 break;
@@ -89,24 +94,38 @@ public class CustomHomeScrollView extends ScrollView {
                 final float preY = y;
                 float nowY = ev.getY();
                 int deltaY = (int) (nowY-preY);
+                if(normal.isEmpty()){
+                    normal.set(inner.getLeft(),inner.getTop(),inner.getRight(),inner.getBottom());
+//                    Log.e(TAG, "disposeTouchEvent: return");
+                    return;
+                }
                 if(isNeedMove(deltaY)){
                     Log.e(TAG, "disposeTouchEvent: need move!!");
-                    if(normal.isEmpty()){
-                        normal.set(inner.getLeft(),inner.getTop(),inner.getRight(),inner.getBottom());
-                        Log.e(TAG, "disposeTouchEvent: return");
-                        return;
-                    }
                     if(nowY < preY){
                         Log.e(TAG, "disposeTouchEvent: move");
                         int moveY = (int) Math.sqrt(Math.abs(deltaY*2));
                         inner.layout(inner.getLeft(),inner.getTop()-moveY,inner.getRight(),inner.getBottom()-moveY);
                     }
+                }else if(isNeedBackMove(deltaY)){
+                    //当布局已经移动layout（手指往上），如果此时手指往回（手指往下），应该使布局layout到原来的位置
+                    Log.e(TAG, "disposeTouchEvent: need back");
+                    int moveY ;
+                    if(inner.getBottom()+deltaY > normal.bottom){
+                        moveY = normal.bottom - inner.getBottom();
+                    }else{
+                        moveY = deltaY;
+                    }
+                    inner.layout(inner.getLeft(),inner.getTop()+moveY,inner.getRight(),inner.getBottom()+moveY);
                 }
                 y = nowY;
                 break;
             default:
                 break;
         }
+    }
+
+    private boolean isNeedBackMove(int deltaY) {
+        return deltaY>0 && inner.getBottom()<normal.bottom;
     }
 
     private void animation() {
@@ -123,7 +142,7 @@ public class CustomHomeScrollView extends ScrollView {
         int scrollY = getScrollY();
         Log.e(TAG, "isNeedMove: scrollY = "+scrollY);
         Log.e(TAG, "isNeedMove: height = "+height);
-        return scrollY == height;
+        return scrollY == height && deltaY<0;
     }
 
 }

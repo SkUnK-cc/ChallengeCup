@@ -1,5 +1,7 @@
 package com.example.hp.challengecup;
 
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -14,7 +16,10 @@ import com.example.hp.challengecup.custom.CustomViewPager;
 import com.example.hp.challengecup.fragment.instance.CommunityFragment;
 import com.example.hp.challengecup.fragment.instance.HomeFragment;
 import com.example.hp.challengecup.fragment.instance.MarketFragment;
+import com.example.hp.challengecup.fragment.instance.MyselfFragment;
+import com.example.hp.challengecup.utils.FileUtil;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -55,9 +60,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     @Bind(R.id.tv_myself)
     TextView tvMyself;
 
+    @Bind(R.id.iv_take_photo)
+    ImageView takePhoto;
+
     TabFragmentPagerAdapter vpAdapter;
     List<Fragment> fragments = new ArrayList<>();
     SparseArray<LinearLayout> sparseArray = new SparseArray<>();
+    private Uri imageUri;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -84,6 +93,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         fragments.add(new HomeFragment());
         fragments.add(new CommunityFragment());
         fragments.add(new MarketFragment());
+        fragments.add(new MyselfFragment());
         vpAdapter = new TabFragmentPagerAdapter(getSupportFragmentManager(),fragments);
         mViewPager.setAdapter(vpAdapter);
         mViewPager.setOffscreenPageLimit(vpAdapter.getCount());
@@ -91,6 +101,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         mViewPager.setCanScroll(false);
 
 
+        takePhoto.setOnClickListener(this);
         llHome.setOnClickListener(this);
         llCommunity.setOnClickListener(this);
         llMarket.setOnClickListener(this);
@@ -127,8 +138,18 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 navSelect(INDEX_MYSELF);
                 mViewPager.setCurrentItem(3);
                 break;
+            case R.id.iv_take_photo:
+                takePhoto();
+                break;
             default:
                 break;
+        }
+    }
+
+    private void takePhoto() {
+        File outpuImage = FileUtil.createLookFile();
+        if(Build.VERSION.SDK_INT >= 24){
+//            imageUri = FileProvider.getUriForFile(this,com.example.hp.challengecup.file)
         }
     }
 
