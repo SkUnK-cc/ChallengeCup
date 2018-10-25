@@ -1,16 +1,20 @@
-package com.example.hp.challengecup;
+package com.example.hp.challengecup.mvp.activity;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.FileProvider;
 import android.util.SparseArray;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.hp.challengecup.R;
 import com.example.hp.challengecup.adapter.viewpager.TabFragmentPagerAdapter;
 import com.example.hp.challengecup.custom.CustomViewPager;
 import com.example.hp.challengecup.fragment.instance.CommunityFragment;
@@ -31,6 +35,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     public static final int INDEX_COMMUNITY = 1;
     public static final int INDEX_MARKET = 2;
     public static final int INDEX_MYSELF = 3;
+
+    public static final int TAKE_PHOTO = 10;
 
 
     @Bind(R.id.vp_main)
@@ -139,32 +145,53 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 mViewPager.setCurrentItem(3);
                 break;
             case R.id.iv_take_photo:
-                takePhoto();
+//                takePhoto();
+                toDisposeActivity();
                 break;
             default:
                 break;
         }
     }
 
+    private void toDisposeActivity() {
+        Intent intent = new Intent(this,DisposePictureActivity.class);
+        startActivity(intent);
+    }
+
     private void takePhoto() {
         File outpuImage = FileUtil.createLookFile();
         if(Build.VERSION.SDK_INT >= 24){
-//            imageUri = FileProvider.getUriForFile(this,com.example.hp.challengecup.file)
+            imageUri = FileProvider.getUriForFile(this,"com.example.hp.challengecup.fileprovider",outpuImage);
+        }else{
+            imageUri = Uri.fromFile(outpuImage);
+        }
+        Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
+        intent.putExtra(MediaStore.EXTRA_OUTPUT,imageUri);
+        startActivityForResult(intent,TAKE_PHOTO);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        switch (requestCode){
+            case TAKE_PHOTO:
+                if(resultCode == RESULT_OK){
+                    Intent intent = new Intent(this,DisposePictureActivity.class);
+                    intent.putExtra(DisposePictureActivity.PICTURE_PATH,imageUri.getPath());
+                    startActivity(intent);
+                }
+                break;
         }
     }
 
     private void navSelect(int index){
-//        Log.e(TAG, "navSelect: size = "+sparseArray.size());
         for (int i=0;i<sparseArray.size();i++) {
             int key = sparseArray.keyAt(i);
             LinearLayout linearLayout = sparseArray.get(key);
             if(key == index){
-//                Log.e(TAG, "navSelect: select = " + i);
                 linearLayout.getChildAt(0).setSelected(true);
                 TextView textView = (TextView) linearLayout.getChildAt(1);
                 textView.setSelected(true);
             }else{
-//                Log.e(TAG, "navSelect: unselect = " + i);
                 linearLayout.getChildAt(0).setSelected(false);
                 TextView textView = (TextView) linearLayout.getChildAt(1);
                 textView.setSelected(false);

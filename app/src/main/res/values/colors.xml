@@ -19,4 +19,5 @@
     <color name="black">#000000</color>
     <color name="bg_myself">#c6cfd8</color>
     <color name="line_myself">#89898b</color>
+    <color name="bg_photo_acquire">#d596b1</color>
 </resources>

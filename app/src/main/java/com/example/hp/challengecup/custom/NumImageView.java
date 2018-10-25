@@ -37,7 +37,7 @@ public class NumImageView extends AppCompatImageView {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-//        if(num==0)return;
+        if(num==0)return;
         mPaint.setColor(Color.parseColor("#d2b8c1"));
         mPaint.setStyle(Paint.Style.FILL);
         int width = getMeasuredWidth();

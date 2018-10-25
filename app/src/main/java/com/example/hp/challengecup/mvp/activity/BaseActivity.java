@@ -1,5 +1,8 @@
-package com.example.hp.challengecup;
+package com.example.hp.challengecup.mvp.activity;
 
+import android.content.pm.ActivityInfo;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -17,6 +20,10 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
         super.onCreate(savedInstanceState);
         setContentView(getContentView());
         ButterKnife.bind(this);
+        if(Build.VERSION.SDK_INT >=21){
+            getWindow().setStatusBarColor(Color.parseColor("#c6cfd8"));
+        }
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         initPresenter();
         if(mPresenter!=null){
             mPresenter.attach(this);
