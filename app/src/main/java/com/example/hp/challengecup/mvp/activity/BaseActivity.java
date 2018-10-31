@@ -18,6 +18,7 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        doBeforeContentView();
         setContentView(getContentView());
         ButterKnife.bind(this);
         if(Build.VERSION.SDK_INT >=21){
@@ -32,6 +33,8 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
         initListener();
         initData();
     }
+
+    protected abstract void doBeforeContentView();
 
     protected abstract void initData();
 

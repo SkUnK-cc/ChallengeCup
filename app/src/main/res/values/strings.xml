@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">ChallengeCup</string>
 
+    <string name="touch_to_focus">触摸屏幕对焦</string>
+    <string name="crop_fail">裁剪失败</string>
+
     <string-array name="home_list">
         <item>@drawable/home_list_1</item>
         <item>@drawable/home_list_2</item>
@@ -65,5 +68,16 @@
         <item>霏丝佳DMT修复保湿乳 200ml</item>
         <item>泰国beauty buffet Q10牛奶洗面奶100g</item>
         <item>悦诗风吟绿茶深层补水保湿泡沫洗面奶150g</item>
+    </string-array>
+    <string-array name="makeup_step">
+        <item>1.洁面：用有效的清洁用品彻底清洁皮肤。</item>
+        <item>2.护肤：涂抹能改善并保护皮肤的护肤品，包括紧肤水或爽肤水、面霜、眼霜。</item>
+        <item>3.打粉底：取散粉或者粉饼，蘸取适量，在粉扑上揉匀，轻轻按压均匀于面部即可，不要忘记鼻翼和眼皮的部分。</item>
+        <item>4.定妆：先用干粉扑粘取适量的蜜粉对折揉匀，用手指弹去多余的粉末，均匀的按压在肌肤上，再用大号化妆刷刷去多余的粉末，千万不可遗忘眼角、鼻翼、嘴角这些油脂茂盛区域。</item>
+        <item>5.眼线：日常的眼线不需要太夸张，顺着睫毛根部细细的在眼睛上化一条贴着睫毛根部的线条就可以。</item>
+        <item>6.眼影：中型的眼影刷沾取白色高光，从内眼角向外眼角大面积扫满整个上眼皮强调结构。作为日常的来说一般都会用大地色系的。</item>
+        <item>7.睫毛：从最外捎-再中间-最后根部的顺序分段式夹睫毛，这样夹的睫毛又自然又卷翘，卷翘能达到80度。</item>
+        <item>8.涂腮红：涂腮红的同时应注意修饰脸的其他部位，如额和下颌。</item>
+        <item>9.涂口红：先用唇线笔描画，再用唇刷或口红棒涂抹。</item>
     </string-array>
 </resources>

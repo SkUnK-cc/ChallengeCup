@@ -23,6 +23,8 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.hp.challengecup.R;
+import com.example.hp.challengecup.camera.CameraActivity;
+import com.example.hp.challengecup.utils.FileUploadUtil;
 import com.example.hp.challengecup.utils.FileUtil;
 
 import java.io.File;
@@ -41,12 +43,19 @@ public class DisposePictureActivity extends BaseActivity implements View.OnClick
     Button btOpenCamera;
     @Bind(R.id.bt_open_album)
     Button btOpenAlbum;
+    @Bind(R.id.bt_makeup)
+    Button btMakeup;
 
     private Uri imageUri;
 
     @Override
     protected int getContentView() {
         return R.layout.activity_dispose;
+    }
+
+    @Override
+    protected void doBeforeContentView() {
+
     }
 
     @Override
@@ -63,6 +72,7 @@ public class DisposePictureActivity extends BaseActivity implements View.OnClick
     protected void initView() {
        btOpenCamera.setOnClickListener(this);
        btOpenAlbum.setOnClickListener(this);
+       btMakeup.setOnClickListener(this);
     }
 
     private void disposeIntent(){
@@ -91,6 +101,18 @@ public class DisposePictureActivity extends BaseActivity implements View.OnClick
                     openAlbum();
                 }
                 break;
+            case R.id.bt_makeup:
+                CameraActivity.toCameraActivity(this, CameraActivity.TYPE_IDCARD_FRONT);
+                break;
+            case R.id.bt_upload:
+                String url = "";
+                String path;
+                if(imageUri!=null){
+                    Toast.makeText(this, "请选择照片", Toast.LENGTH_SHORT).show();
+                    return ;
+                }
+                path = imageUri.getPath();
+                FileUploadUtil.imageUpload(url,path,this);
             default:
                 break;
         }
@@ -147,13 +169,20 @@ public class DisposePictureActivity extends BaseActivity implements View.OnClick
                     }
                 }
                 break;
+            case CameraActivity.REQUEST_CODE:
+                if(resultCode == CameraActivity.RESULT_CODE){
+
+                }
+                break;
             default:
                 break;
         }
     }
 
     private void handleImageBeforeKitKat(Intent data) {
-
+        Uri uri = data.getData();
+        String imagePath = getImagePath(uri,null);
+        displayImage(imagePath);
     }
 
     @TargetApi(Build.VERSION_CODES.KITKAT)
@@ -181,6 +210,7 @@ public class DisposePictureActivity extends BaseActivity implements View.OnClick
     private void displayImage(String imagePath) {
         Bitmap bitmap = BitmapFactory.decodeFile(imagePath);
         ivShowPicture.setImageBitmap(bitmap);
+        imageUri = Uri.fromFile(new File(imagePath));
     }
 
     private String getImagePath(Uri externalContentUri, String selection) {

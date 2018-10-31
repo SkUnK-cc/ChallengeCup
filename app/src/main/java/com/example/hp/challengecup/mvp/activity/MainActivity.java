@@ -80,6 +80,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     }
 
     @Override
+    protected void doBeforeContentView() {
+
+    }
+
+    @Override
     protected int getContentView() {
         return R.layout.activity_main;
     }
@@ -145,7 +150,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 mViewPager.setCurrentItem(3);
                 break;
             case R.id.iv_take_photo:
-//                takePhoto();
                 toDisposeActivity();
                 break;
             default:
