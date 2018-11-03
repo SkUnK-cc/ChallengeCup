@@ -42,10 +42,7 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:3.7.0'
     //圆形图片
     implementation 'de.hdodenhof:circleimageview:2.2.0'
-    //    //IDCardCamera
-    //    implementation 'com.github.wildma:IDCardCamera:1.0.1'
-    implementation files('libs/javabuilder.jar')
-    implementation files('libs/z_im.jar')
+
 
     //网络请求
     implementation 'io.reactivex.rxjava2:rxjava:2.1.3'

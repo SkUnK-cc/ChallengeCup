@@ -77,6 +77,23 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
                 }
                 //设置比例
                 Camera.Size bestSize = getBestSize(parameters.getSupportedPreviewSizes());
+//                if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT){
+//                    if (bestSize != null) {
+//                        parameters.setPreviewSize(bestSize.width, bestSize.height);
+//                        parameters.setPictureSize(bestSize.width, bestSize.height);
+//                    } else {
+//                        parameters.setPreviewSize(1080, 1920);
+//                        parameters.setPictureSize(1080, 1920);
+//                    }
+//                }else if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT){
+//                    if (bestSize != null) {
+//                        parameters.setPreviewSize(bestSize.width, bestSize.height);
+//                        parameters.setPictureSize(bestSize.width, bestSize.height);
+//                    } else {
+//                        parameters.setPreviewSize(1920, 1080);
+//                        parameters.setPictureSize(1920, 1080);
+//                    }
+//                }
                 if (bestSize != null) {
                     parameters.setPreviewSize(bestSize.width, bestSize.height);
                     parameters.setPictureSize(bestSize.width, bestSize.height);

@@ -25,4 +25,11 @@
     <color name="preview_mock">#00ffffff</color>
     <color name="color_000000">#000000</color>
     <color name="color_afff">#afff</color>
+    <color name="regist_bar_textcolor">#ffffff</color>
+    <color name="regist_edit_full">#eeeeee</color>
+    <color name="regist_edit_stroke">#A0A0A0</color>
+    <color name="bg_register">#C6CFD8</color>
+    <color name="bg_required_code">#DCDCDC</color>
+    <color name="bg_register_next">#86A3B1</color>
+    <color name="cyan">#86A3B1</color>
 </resources>

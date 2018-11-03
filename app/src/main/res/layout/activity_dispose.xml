@@ -6,9 +6,10 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <include layout="@layout/makeup_bar"/>
     <com.example.hp.challengecup.custom.RoundImageView
         android:id="@+id/show_picture"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="10dp"
         android:layout_width="230dp"
         android:layout_height="270dp"
         android:src="@drawable/home_recycler_2"
@@ -20,7 +21,7 @@
         android:id="@+id/bt_open_camera"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/bg_getphoto"
         android:text="拍照"
         android:textSize="18sp"
@@ -29,7 +30,7 @@
         android:id="@+id/bt_open_album"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/bg_getphoto"
         android:text="相册"
         android:textSize="18sp"
@@ -38,7 +39,7 @@
         android:id="@+id/bt_upload"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/bg_getphoto"
         android:text="上传图片"
         android:textSize="18sp"
@@ -47,7 +48,7 @@
         android:id="@+id/bt_makeup"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/bg_getphoto"
         android:text="开始化妆"
         android:textSize="18sp"

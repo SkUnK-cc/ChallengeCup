@@ -17,6 +17,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.FileProvider;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -28,8 +29,14 @@ import com.example.hp.challengecup.utils.FileUploadUtil;
 import com.example.hp.challengecup.utils.FileUtil;
 
 import java.io.File;
+import java.io.IOException;
 
 import butterknife.Bind;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 public class DisposePictureActivity extends BaseActivity implements View.OnClickListener {
     public static final String PICTURE_PATH = "picture";
@@ -43,6 +50,8 @@ public class DisposePictureActivity extends BaseActivity implements View.OnClick
     Button btOpenCamera;
     @Bind(R.id.bt_open_album)
     Button btOpenAlbum;
+    @Bind(R.id.bt_upload)
+    Button btUpload;
     @Bind(R.id.bt_makeup)
     Button btMakeup;
 
@@ -73,6 +82,7 @@ public class DisposePictureActivity extends BaseActivity implements View.OnClick
        btOpenCamera.setOnClickListener(this);
        btOpenAlbum.setOnClickListener(this);
        btMakeup.setOnClickListener(this);
+       btUpload.setOnClickListener(this);
     }
 
     private void disposeIntent(){
@@ -105,17 +115,54 @@ public class DisposePictureActivity extends BaseActivity implements View.OnClick
                 CameraActivity.toCameraActivity(this, CameraActivity.TYPE_IDCARD_FRONT);
                 break;
             case R.id.bt_upload:
-                String url = "";
-                String path;
-                if(imageUri!=null){
-                    Toast.makeText(this, "请选择照片", Toast.LENGTH_SHORT).show();
-                    return ;
-                }
-                path = imageUri.getPath();
-                FileUploadUtil.imageUpload(url,path,this);
+//                uploadImg();
+//                registerTest();
+                matchActivity();
             default:
                 break;
         }
+    }
+
+    private void matchActivity() {
+        Intent intent = new Intent(this,MatchActivity.class);
+        startActivity(intent);
+    }
+
+    private void uploadImg() {
+        String url = "http://192.168.1.104:8000/uphomeimg";
+//        Resources resource = getResources();
+//        Uri uri = Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE+"://"
+//                +resource.getResourcePackageName(R.drawable.home_recycler_2)+"/"
+//                +resource.getResourceTypeName(R.drawable.home_recycler_2)+"/"
+//                +resource.getResourceEntryName(R.drawable.home_recycler_2));
+//        if(imageUri!=null){
+//            Toast.makeText(this, "请选择照片", Toast.LENGTH_SHORT).show();
+//            return ;
+//        }
+//        path = imageUri.getPath();
+        //159874xzh
+        String path = imageUri.getPath();
+        FileUploadUtil.imageUpload(url,path,this);
+    }
+
+    private void registerTest() {
+        String url = "http://192.168.1.104:8000/loginApp?username=root&password=159874xzh";
+        OkHttpClient mClient = new OkHttpClient();
+        Request request = new Request.Builder()
+                .url(url)
+                .build();
+        Call call = mClient.newCall(request);
+        call.enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                Log.e("Register", "onFailure: "+e.getMessage());
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                Log.e("Register", "onResponse: "+response.body().string());
+            }
+        });
     }
 
     private void openAlbum() {

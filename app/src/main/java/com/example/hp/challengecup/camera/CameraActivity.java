@@ -5,14 +5,19 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.hardware.Camera;
+import android.hardware.SensorManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.ActivityCompat;
 import android.util.Log;
+import android.view.OrientationEventListener;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -40,6 +45,9 @@ import java.util.List;
  */
 public class CameraActivity extends Activity implements View.OnClickListener {
     public final static String TAG = "CameraActivity";
+    public final static String ORIENTATION_PORT = "port";
+    public final static String ORIENTATION_LAND = "land";
+    public String ORIENTATION_CURRENT = "";
 
     public final static int    TYPE_IDCARD_FRONT      = 1;//身份证正面
     public final static int    TYPE_IDCARD_BACK       = 2;//身份证反面
@@ -61,11 +69,17 @@ public class CameraActivity extends Activity implements View.OnClickListener {
     private View mLlCameraOption;      //操作布局
     private View mLlCameraResult;      //拍照后操作布局
     private TextView tvBottom;//下方"聚焦"字体
-    private Button btNextStep;
     private Button btMakeupOut;
+    private ImageView ivMakeup;
+    private ImageView ivNextStep;
+
+    //2
+
 
     private int stepNum = 0;
     List<String> steps = new ArrayList<>();
+
+    private OrientationEventListener listener;
 
     /**
      * 跳转到拍照界面
@@ -138,9 +152,11 @@ public class CameraActivity extends Activity implements View.OnClickListener {
     }
 
     private void init() {
-        setContentView(R.layout.activity_camera);
+        setContentView(R.layout.activity_camera2);
         mType = getIntent().getIntExtra(TAKE_TYPE, 0);
+        //2
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+
         initView();
         initListener();
     }
@@ -154,11 +170,12 @@ public class CameraActivity extends Activity implements View.OnClickListener {
         mLlCameraResult = findViewById(R.id.ll_camera_result);
         mCropImageView = findViewById(R.id.crop_image_view);
 
+        ivNextStep = findViewById(R.id.iv_next_step);
+        ivMakeup = findViewById(R.id.iv_makeup);
         tvBottom =  findViewById(R.id.tv_bottom);
-        btNextStep = findViewById(R.id.bt_next_step);
         btMakeupOut = findViewById(R.id.bt_makeup_out);
-        btNextStep.setOnClickListener(this);
         btMakeupOut.setOnClickListener(this);
+        ivNextStep.setOnClickListener(this);
         getStepString();
 
         //获取屏幕最小边，设置为cameraPreview较窄的一边
@@ -167,7 +184,7 @@ public class CameraActivity extends Activity implements View.OnClickListener {
         float maxSize = screenMinSize / 9.0f * 16.0f;
         RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams((int) maxSize, (int) screenMinSize);
         layoutParams.addRule(RelativeLayout.CENTER_IN_PARENT);
-        mCameraPreview.setLayoutParams(layoutParams);
+//        mCameraPreview.setLayoutParams(layoutParams);
 
         float height = (int) (screenMinSize * 0.75);
         float width = (int) (height * 75.0f / 47.0f);
@@ -223,6 +240,110 @@ public class CameraActivity extends Activity implements View.OnClickListener {
         findViewById(R.id.iv_camera_take).setOnClickListener(this);
         findViewById(R.id.iv_camera_result_ok).setOnClickListener(this);
         findViewById(R.id.iv_camera_result_cancel).setOnClickListener(this);
+        //2
+        ivMakeup.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                initOrientationListener();
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                    ivMakeup.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                }else{
+                    ivMakeup.getViewTreeObserver().removeGlobalOnLayoutListener(this);
+                }
+            }
+        });
+        initOrientationListener();
+    }
+
+    private void initOrientationListener(){
+        listener = new OrientationEventListener(this, SensorManager.SENSOR_DELAY_NORMAL) {
+            @Override
+            public void onOrientationChanged(int orientation) {
+                if(orientation>340||orientation<20){
+                    if(ORIENTATION_CURRENT!=ORIENTATION_PORT){
+                        setOrientationPort();
+                    }
+                }else if(orientation>70 && orientation<110){
+
+                }else if(orientation>160 && orientation<200){
+
+                }else if(orientation>250 && orientation<290){
+                    if(ORIENTATION_CURRENT!=ORIENTATION_LAND){
+                        setOrientationLandLeft();
+                    }
+                }
+            }
+        };
+        if (listener.canDetectOrientation()) {
+            Log.v(TAG, "Can detect orientation");
+            listener.enable();
+        } else {
+            Log.v(TAG, "Cannot detect orientation");
+            listener.disable();
+        }
+    }
+
+    private void setOrientationPort(){
+//        RelativeLayout.LayoutParams lpIvMakeup = (RelativeLayout.LayoutParams) ivMakeup.getLayoutParams();
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+//            lpIvMakeup.removeRule(RelativeLayout.ALIGN_PARENT_LEFT);
+//        }
+//        lpIvMakeup.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+//        lpIvMakeup.addRule(RelativeLayout.ALIGN_PARENT_TOP);
+//        ivMakeup.setLayoutParams(lpIvMakeup);
+        getViewInfo(ivMakeup,"iv_makeup");
+        ivMakeup.setRotation(-90);
+        getViewInfo(ivMakeup,"iv_makeup");
+//        RelativeLayout.LayoutParams lpBtNext = new RelativeLayout.LayoutParams(DisplayUtil.dip2px(this,60),DisplayUtil.dip2px(this,55));
+//        lpBtNext.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+//        lpBtNext.addRule(RelativeLayout.ALIGN_PARENT_TOP);
+//        btNext2.setLayoutParams(lpBtNext);
+//        btNext2.setRotation(-90);
+//        RelativeLayout.LayoutParams lpTvIntro = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+//        lpTvIntro.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+//        lpTvIntro.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+//        tvBottom.setLayoutParams(lpTvIntro);
+//        tvBottom.setRotation(-90);
+
+//        RelativeLayout.LayoutParams lpLinear = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+//        lpLinear.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+////        lpLinear.addRule(RelativeLayout.ALIGN_PARENT_TOP);
+//        llBottom.setLayoutParams(lpLinear);
+//        llBottom.setRotation(-90);
+
+        ORIENTATION_CURRENT = ORIENTATION_PORT;
+    }
+
+    private void setOrientationLandLeft() {
+//        RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) ivMakeup.getLayoutParams();
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+//            layoutParams.removeRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+//        }
+//        layoutParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
+//        layoutParams.addRule(RelativeLayout.ALIGN_PARENT_TOP);
+//        ivMakeup.setLayoutParams(layoutParams);
+        getViewInfo(ivMakeup,"iv_makeup");
+        ivMakeup.setRotation(0);
+        getViewInfo(ivMakeup,"iv_makeup");
+//        RelativeLayout.LayoutParams lpBtNext = new RelativeLayout.LayoutParams(DisplayUtil.dip2px(this,60),DisplayUtil.dip2px(this,55));
+//        lpBtNext.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+//        lpBtNext.addRule(RelativeLayout.ALIGN_PARENT_TOP);
+//        btNext2.setLayoutParams(lpBtNext);
+//        btNext2.setRotation(0);
+//        RelativeLayout.LayoutParams lpTvIntro = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+//        lpTvIntro.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+//        lpTvIntro.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+//        tvBottom.setLayoutParams(lpTvIntro);
+//        tvBottom.setRotation(0);
+
+
+        ORIENTATION_CURRENT = ORIENTATION_LAND;
+    }
+    private void getViewInfo(View v,String name){
+        Log.e(name, "left  = "+v.getLeft());
+        Log.e(name, "top   = "+v.getTop());
+        Log.e(name, "right = "+v.getRight());
+        Log.e(name, "bottom= "+v.getBottom());
     }
 
     @Override
@@ -246,7 +367,7 @@ public class CameraActivity extends Activity implements View.OnClickListener {
             setTakePhotoLayout();
         }else if(id == R.id.bt_makeup_out){
             finish();
-        }else if(id == R.id.bt_next_step){
+        }else if(id == R.id.iv_next_step){
             stepNum++;
             getStepString();
         }
@@ -388,5 +509,18 @@ public class CameraActivity extends Activity implements View.OnClickListener {
         if (mCameraPreview != null) {
             mCameraPreview.onStop();
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        //2
+        listener.disable();
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        Log.e(TAG, "onConfigurationChanged: changed");
     }
 }

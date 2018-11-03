@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/bg_register">
+
+    <include layout="@layout/register_bar_two"/>
+
+    <ImageView
+        android:id="@+id/iv_registertwo_head"
+        android:layout_width="104dp"
+        android:layout_height="104dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="28dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="更改头像"
+        android:textColor="@color/cyan"
+        android:layout_gravity="center_horizontal"/>
+    <EditText
+        android:layout_width="329dp"
+        android:layout_height="45dp"
+        android:background="@drawable/bg_register_edit"
+        android:layout_marginTop="16dp"
+        android:paddingLeft="15dp"
+        android:hint="输入新用户名"
+        android:layout_gravity="center_horizontal"/>
+    <Button
+        android:layout_width="329dp"
+        android:layout_height="57dp"
+        android:text="完成注册并登录"
+        android:background="@drawable/bg_register_next"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center_horizontal"/>
+
+</LinearLayout>

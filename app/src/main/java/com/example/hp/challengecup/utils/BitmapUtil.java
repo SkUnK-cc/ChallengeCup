@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.util.Log;
 import android.widget.ImageView;
 
 public class BitmapUtil {
@@ -34,7 +33,7 @@ public class BitmapUtil {
         // 源图片的高度和宽度
         final int height = options.outHeight;
         final int width = options.outWidth;
-        Log.e(TAG, "height = "+height+"\nwidth = "+width+"\nreqHeight = "+reqHeight+"\nreqWidth="+reqWidth);
+//        Log.e(TAG, "height = "+height+"\nwidth = "+width+"\nreqHeight = "+reqHeight+"\nreqWidth="+reqWidth);
 
         int inSampleSize = 1;
         if (height > reqHeight || width > reqWidth) {
@@ -45,7 +44,7 @@ public class BitmapUtil {
             // 一定都会大于等于目标的宽和高。
             inSampleSize = heightRatio < widthRatio ? heightRatio : widthRatio;
         }
-        Log.e(TAG, "calculateInSampleSize: sampleSize = "+inSampleSize);
+//        Log.e(TAG, "calculateInSampleSize: sampleSize = "+inSampleSize);
         return inSampleSize;
     }
 }

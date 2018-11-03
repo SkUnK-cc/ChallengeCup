@@ -10,4 +10,9 @@
         <attr name="type"/>
     </declare-styleable>
 
+    <declare-styleable name="StrokeTextView">
+        <attr name="outerColor" format="color|reference"/>
+        <attr name="innerColor" format="color|reference"/>
+    </declare-styleable>
+
 </resources>

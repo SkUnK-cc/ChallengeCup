@@ -2,10 +2,10 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/color_000000">
+    android:background="@color/black">
 
     <!--相机预览-->
-    <com.wildma.idcardcamera.camera.CameraPreview
+    <com.example.hp.challengecup.camera.CameraPreview
         android:id="@+id/camera_preview"
         android:visibility="gone"
         android:layout_width="match_parent"
@@ -25,11 +25,11 @@
 
             <!--相机裁剪区域左边-->
             <!--<View-->
-                <!--android:id="@+id/view_camera_crop_left"-->
-                <!--android:layout_width="0dp"-->
-                <!--android:layout_height="match_parent"-->
-                <!--android:layout_weight="1"-->
-                <!--android:background="@color/preview_mock" />-->
+            <!--android:id="@+id/view_camera_crop_left"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_weight="1"-->
+            <!--android:background="@color/preview_mock" />-->
 
             <LinearLayout
                 android:id="@+id/ll_camera_crop_container"
@@ -39,38 +39,28 @@
 
                 <!--相机裁剪区域顶部-->
                 <!--<View-->
-                    <!--android:id="@+id/view_camera_crop_top"-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="0dp"-->
-                    <!--android:layout_weight="1"-->
-                    <!--android:background="@color/preview_mock" />-->
+                <!--android:id="@+id/view_camera_crop_top"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="0dp"-->
+                <!--android:layout_weight="1"-->
+                <!--android:background="@color/preview_mock" />-->
 
                 <!--相机裁剪区域-->
                 <!--<ImageView-->
-                    <!--android:id="@+id/iv_camera_crop"-->
-                    <!--android:layout_width="0dp"-->
-                    <!--android:layout_height="0dp"-->
-                    <!--android:scaleType="fitXY" />-->
+                <!--android:id="@+id/iv_camera_crop"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="0dp"-->
+                <!--android:scaleType="fitXY" />-->
 
                 <!--手动裁剪区域-->
-                <com.wildma.idcardcamera.cropper.CropImageView
+                <com.example.hp.challengecup.cropper.CropImageView
                     android:visibility="gone"
                     android:id="@+id/crop_image_view"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
 
                 <!--相机裁剪区域底部-->
-                <TextView
-                    android:id="@+id/tv_bottom"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:background="@color/preview_mock"
-                    android:gravity="bottom"
-                    android:layout_margin="14dp"
-                    android:text="@string/touch_to_focus"
-                    android:textColor="@color/color_afff"
-                    android:textSize="16sp" />
+
 
             </LinearLayout>
 
@@ -78,9 +68,10 @@
 
         <!--右侧操作布局-->
         <FrameLayout
-            android:layout_width="110dp"
+            android:layout_width="100dp"
             android:layout_height="match_parent"
-            android:background="@color/preview_mock">
+            android:background="@color/preview_mock"
+            android:visibility="gone">
 
             <!--拍照前操作布局-->
             <LinearLayout
@@ -111,6 +102,7 @@
                     android:layout_height="160dp"
                     android:src="@drawable/home_recycler_2"
                     android:padding="4dp"/>
+
                 <Button
                     android:id="@+id/bt_makeup_out"
                     android:layout_width="match_parent"
@@ -166,4 +158,42 @@
         </FrameLayout>
 
     </LinearLayout>
+
+    <ImageView
+        android:id="@+id/iv_makeup"
+        android:layout_width="200dp"
+        android:layout_height="160dp"
+        android:src="@drawable/picture_camera"
+        android:padding="4dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true" />
+    <LinearLayout
+        android:id="@+id/ll_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_bottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/preview_mock"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:text="@string/touch_to_focus"
+            android:textColor="@color/cyan"
+            android:textSize="16sp" />
+        <ImageView
+            android:id="@+id/iv_next_step"
+            android:layout_width="70dp"
+            android:layout_height="50dp"
+            android:src="@drawable/next_step"
+            android:textSize="16sp"
+            android:scaleType="fitCenter"
+            android:layout_gravity="bottom"/>
+    </LinearLayout>
+
+
+
 </RelativeLayout>

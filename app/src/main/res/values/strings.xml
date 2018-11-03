@@ -80,4 +80,28 @@
         <item>8.涂腮红：涂腮红的同时应注意修饰脸的其他部位，如额和下颌。</item>
         <item>9.涂口红：先用唇线笔描画，再用唇刷或口红棒涂抹。</item>
     </string-array>
+    <string-array name="match_result">
+        <item>@drawable/match_result_1</item>
+        <item>@drawable/match_result_2</item>
+        <item>@drawable/match_result_3</item>
+        <item>@drawable/match_result_4</item>
+        <item>@drawable/match_result_5</item>
+        <item>@drawable/match_result_6</item>
+        <item>@drawable/match_result_7</item>
+        <item>@drawable/match_result_8</item>
+    </string-array>
+    <string-array name="match_facial">
+        <item>@drawable/result_facial_1</item>
+        <item>@drawable/result_facial_2</item>
+        <item>@drawable/result_facial_3</item>
+        <item>@drawable/result_facial_4</item>
+        <item>@drawable/result_facial_5</item>
+    </string-array>
+    <string-array name="match_facial_text">
+        <item>小山眉</item>
+        <item>圆眼</item>
+        <item>低耳</item>
+        <item>骆峰鼻</item>
+        <item>薄唇</item>
+    </string-array>
 </resources>

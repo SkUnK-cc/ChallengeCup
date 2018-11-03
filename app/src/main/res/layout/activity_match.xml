@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/bg_match_activity">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="89dp"
+        android:src="@drawable/match_result_title"
+        android:scaleType="fitXY"/>
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="59dp"
+        android:src="@drawable/tv_choose_makeup"
+        android:scaleType="centerInside"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"/>
+    <com.example.hp.challengecup.custom.ScrollListenerRecyclerView
+        android:id="@+id/rv_match_result"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+    </com.example.hp.challengecup.custom.ScrollListenerRecyclerView>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="19dp"
+        android:orientation="horizontal"
+        android:layout_gravity="right"
+        android:layout_marginTop="17dp"
+        android:layout_marginRight="12dp">
+        <com.example.hp.challengecup.custom.StrokeTextView
+            android:id="@+id/iv_next_page"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/next_page"
+            app:innerColor="@color/cyan"
+            app:outerColor="@color/home_bar_white"
+            android:text="下一页"
+            android:scaleType="fitXY"/>
+        <ImageView
+            android:layout_width="17dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/img_next_page"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="125dp"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical">
+        <com.example.hp.challengecup.custom.StrokeTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="五官类别："
+            app:innerColor="#86A3B1"
+            android:textSize="18sp"
+            app:outerColor="@android:color/black"
+            android:layout_marginLeft="16dp"
+            android:gravity="center"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_match_facial"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+        </android.support.v7.widget.RecyclerView>
+    </LinearLayout>
+</LinearLayout>

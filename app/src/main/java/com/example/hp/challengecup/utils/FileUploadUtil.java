@@ -1,7 +1,7 @@
 package com.example.hp.challengecup.utils;
 
 import android.content.Context;
-import android.widget.Toast;
+import android.util.Log;
 
 import java.io.File;
 import java.io.IOException;
@@ -20,6 +20,7 @@ public class FileUploadUtil {
     public static void imageUpload(String url, String path, final Context context){
         OkHttpClient mClient = new OkHttpClient();
         File file = new File(path);
+        Log.e("upload image", "file name: "+file.getName());
         MultipartBody.Builder builder = new MultipartBody.Builder()
                 .setType(MultipartBody.FORM)
                 .addFormDataPart("img",file.getName(),
@@ -34,12 +35,15 @@ public class FileUploadUtil {
         call.enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-                Toast.makeText(context, "上传失败", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(context, "上传失败", Toast.LENGTH_SHORT).show();
+                Log.e("upload image", "上传失败:"+e.getMessage());
             }
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-                Toast.makeText(context, "上传成功", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(context, "上传成功", Toast.LENGTH_SHORT).show();
+                Log.e("upload image", "上传成功:"+response.body().string());
+
             }
         });
     }
