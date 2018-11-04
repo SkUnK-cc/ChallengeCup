@@ -11,186 +11,193 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal">
+    <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:orientation="horizontal">-->
 
-        <!--左侧相机预览布局-->
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="horizontal">
-
-            <!--相机裁剪区域左边-->
-            <!--<View-->
-            <!--android:id="@+id/view_camera_crop_left"-->
+        <!--&lt;!&ndash;左侧相机预览布局&ndash;&gt;-->
+        <!--<LinearLayout-->
             <!--android:layout_width="0dp"-->
             <!--android:layout_height="match_parent"-->
             <!--android:layout_weight="1"-->
-            <!--android:background="@color/preview_mock" />-->
+            <!--android:orientation="horizontal">-->
 
-            <LinearLayout
-                android:id="@+id/ll_camera_crop_container"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+            <!--&lt;!&ndash;相机裁剪区域左边&ndash;&gt;-->
+            <!--&lt;!&ndash;<View&ndash;&gt;-->
+            <!--&lt;!&ndash;android:id="@+id/view_camera_crop_left"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_width="0dp"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_height="match_parent"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_weight="1"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:background="@color/preview_mock" />&ndash;&gt;-->
 
-                <!--相机裁剪区域顶部-->
-                <!--<View-->
-                <!--android:id="@+id/view_camera_crop_top"-->
+            <!--<LinearLayout-->
+                <!--android:id="@+id/ll_camera_crop_container"-->
                 <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="0dp"-->
-                <!--android:layout_weight="1"-->
-                <!--android:background="@color/preview_mock" />-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:orientation="vertical">-->
 
-                <!--相机裁剪区域-->
+                <!--&lt;!&ndash;相机裁剪区域顶部&ndash;&gt;-->
+                <!--&lt;!&ndash;<View&ndash;&gt;-->
+                <!--&lt;!&ndash;android:id="@+id/view_camera_crop_top"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:layout_height="0dp"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:layout_weight="1"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:background="@color/preview_mock" />&ndash;&gt;-->
+
+                <!--&lt;!&ndash;相机裁剪区域&ndash;&gt;-->
+                <!--&lt;!&ndash;<ImageView&ndash;&gt;-->
+                <!--&lt;!&ndash;android:id="@+id/iv_camera_crop"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:layout_width="0dp"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:layout_height="0dp"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:scaleType="fitXY" />&ndash;&gt;-->
+
+                <!--&lt;!&ndash;手动裁剪区域&ndash;&gt;-->
+                <!--<com.example.hp.challengecup.cropper.CropImageView-->
+                    <!--android:visibility="gone"-->
+                    <!--android:id="@+id/crop_image_view"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="match_parent"/>-->
+
+                <!--&lt;!&ndash;相机裁剪区域底部&ndash;&gt;-->
+
+
+            <!--</LinearLayout>-->
+
+        <!--</LinearLayout>-->
+
+        <!--&lt;!&ndash;右侧操作布局&ndash;&gt;-->
+        <!--<FrameLayout-->
+            <!--android:layout_width="100dp"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:background="@color/preview_mock"-->
+            <!--android:visibility="gone">-->
+
+            <!--&lt;!&ndash;拍照前操作布局&ndash;&gt;-->
+            <!--<LinearLayout-->
+                <!--android:id="@+id/ll_camera_option"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:gravity="center"-->
+                <!--android:orientation="vertical"-->
+                <!--android:background="@color/main_color_pink">-->
+
                 <!--<ImageView-->
-                <!--android:id="@+id/iv_camera_crop"-->
-                <!--android:layout_width="0dp"-->
-                <!--android:layout_height="0dp"-->
-                <!--android:scaleType="fitXY" />-->
+                    <!--android:id="@+id/iv_camera_flash"-->
+                    <!--android:layout_width="40dp"-->
+                    <!--android:layout_height="40dp"-->
+                    <!--android:src="@drawable/camera_flash_off"-->
+                    <!--android:visibility="gone"/>-->
 
-                <!--手动裁剪区域-->
-                <com.example.hp.challengecup.cropper.CropImageView
-                    android:visibility="gone"
-                    android:id="@+id/crop_image_view"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"/>
+                <!--<ImageView-->
+                    <!--android:id="@+id/iv_camera_take"-->
+                    <!--android:layout_width="72dp"-->
+                    <!--android:layout_height="72dp"-->
+                    <!--android:layout_margin="32dp"-->
+                    <!--android:src="@drawable/camera_take"-->
+                    <!--android:visibility="gone"/>-->
 
-                <!--相机裁剪区域底部-->
+                <!--<ImageView-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="160dp"-->
+                    <!--android:src="@drawable/home_recycler_2"-->
+                    <!--android:padding="4dp"/>-->
 
+                <!--<Button-->
+                    <!--android:id="@+id/bt_makeup_out"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="55dp"-->
+                    <!--android:layout_margin="3dp"-->
+                    <!--android:src="@drawable/camera_take"-->
+                    <!--android:background="@drawable/bg_getphoto"-->
+                    <!--android:text="返回"-->
+                    <!--android:textSize="16sp"/>-->
+                <!--<Button-->
+                    <!--android:id="@+id/bt_next_step"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="55dp"-->
+                    <!--android:layout_margin="3dp"-->
+                    <!--android:src="@drawable/camera_take"-->
+                    <!--android:background="@drawable/bg_getphoto"-->
+                    <!--android:text="下一步"-->
+                    <!--android:textSize="16sp" />-->
 
-            </LinearLayout>
+                <!--<ImageView-->
+                    <!--android:id="@+id/iv_camera_close"-->
+                    <!--android:layout_width="40dp"-->
+                    <!--android:layout_height="40dp"-->
+                    <!--android:src="@drawable/camera_close"-->
+                    <!--android:visibility="gone"/>-->
 
-        </LinearLayout>
+            <!--</LinearLayout>-->
 
-        <!--右侧操作布局-->
-        <FrameLayout
-            android:layout_width="100dp"
-            android:layout_height="match_parent"
-            android:background="@color/preview_mock"
-            android:visibility="gone">
+            <!--&lt;!&ndash;拍照后操作布局&ndash;&gt;-->
+            <!--<LinearLayout-->
+                <!--android:id="@+id/ll_camera_result"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:gravity="center"-->
+                <!--android:orientation="vertical"-->
+                <!--android:visibility="gone">-->
 
-            <!--拍照前操作布局-->
-            <LinearLayout
-                android:id="@+id/ll_camera_option"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:background="@color/main_color_pink">
+                <!--<ImageView-->
+                    <!--android:id="@+id/iv_camera_result_ok"-->
+                    <!--android:layout_width="40dp"-->
+                    <!--android:layout_height="40dp"-->
+                    <!--android:src="@drawable/camera_result_ok" />-->
 
-                <ImageView
-                    android:id="@+id/iv_camera_flash"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:src="@drawable/camera_flash_off"
-                    android:visibility="gone"/>
+                <!--<ImageView-->
+                    <!--android:id="@+id/iv_camera_result_cancel"-->
+                    <!--android:layout_width="40dp"-->
+                    <!--android:layout_height="40dp"-->
+                    <!--android:layout_marginTop="80dp"-->
+                    <!--android:src="@drawable/camera_result_cancel" />-->
 
-                <ImageView
-                    android:id="@+id/iv_camera_take"
-                    android:layout_width="72dp"
-                    android:layout_height="72dp"
-                    android:layout_margin="32dp"
-                    android:src="@drawable/camera_take"
-                    android:visibility="gone"/>
+            <!--</LinearLayout>-->
 
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="160dp"
-                    android:src="@drawable/home_recycler_2"
-                    android:padding="4dp"/>
+        <!--</FrameLayout>-->
 
-                <Button
-                    android:id="@+id/bt_makeup_out"
-                    android:layout_width="match_parent"
-                    android:layout_height="55dp"
-                    android:layout_margin="3dp"
-                    android:src="@drawable/camera_take"
-                    android:background="@drawable/bg_getphoto"
-                    android:text="返回"
-                    android:textSize="16sp"/>
-                <Button
-                    android:id="@+id/bt_next_step"
-                    android:layout_width="match_parent"
-                    android:layout_height="55dp"
-                    android:layout_margin="3dp"
-                    android:src="@drawable/camera_take"
-                    android:background="@drawable/bg_getphoto"
-                    android:text="下一步"
-                    android:textSize="16sp" />
+    <!--</LinearLayout>-->
 
-                <ImageView
-                    android:id="@+id/iv_camera_close"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:src="@drawable/camera_close"
-                    android:visibility="gone"/>
-
-            </LinearLayout>
-
-            <!--拍照后操作布局-->
-            <LinearLayout
-                android:id="@+id/ll_camera_result"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:visibility="gone">
-
-                <ImageView
-                    android:id="@+id/iv_camera_result_ok"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:src="@drawable/camera_result_ok" />
-
-                <ImageView
-                    android:id="@+id/iv_camera_result_cancel"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_marginTop="80dp"
-                    android:src="@drawable/camera_result_cancel" />
-
-            </LinearLayout>
-
-        </FrameLayout>
-
-    </LinearLayout>
-
-    <ImageView
-        android:id="@+id/iv_makeup"
-        android:layout_width="200dp"
-        android:layout_height="160dp"
-        android:src="@drawable/picture_camera"
-        android:padding="4dp"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true" />
-    <LinearLayout
-        android:id="@+id/ll_bottom"
+    <FrameLayout
+        android:id="@+id/fl_upper_preview"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/tv_bottom"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/preview_mock"
-            android:layout_margin="10dp"
-            android:layout_weight="1"
-            android:text="9999999999999999999999999999999999999999999999999999999999999999999"
-            android:textColor="@color/cyan"
-            android:textSize="16sp" />
+        android:layout_height="match_parent">
         <ImageView
-            android:id="@+id/iv_next_step"
-            android:layout_width="70dp"
-            android:layout_height="50dp"
-            android:src="@drawable/next_step"
-            android:textSize="16sp"
-            android:scaleType="fitCenter"
-            android:layout_gravity="bottom"/>
-    </LinearLayout>
+            android:id="@+id/iv_makeup"
+            android:layout_width="200dp"
+            android:layout_height="160dp"
+            android:src="@drawable/picture_camera"
+            android:padding="4dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_gravity="left|top"/>
+        <LinearLayout
+            android:id="@+id/ll_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal"
+            android:layout_gravity="bottom">
+
+            <TextView
+                android:id="@+id/tv_bottom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/preview_mock"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:text="9999999999999999999999999999999999999999999999999999999999999999999"
+                android:textColor="@color/cyan"
+                android:textSize="16sp" />
+            <ImageView
+                android:id="@+id/iv_next_step"
+                android:layout_width="70dp"
+                android:layout_height="50dp"
+                android:src="@drawable/next_step"
+                android:textSize="16sp"
+                android:scaleType="fitCenter"
+                android:layout_gravity="bottom"/>
+        </LinearLayout>
+    </FrameLayout>
 </RelativeLayout>

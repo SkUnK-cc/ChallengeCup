@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
+import java.lang.reflect.Method;
 import java.util.List;
 
 /**
@@ -242,6 +243,24 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
     public void onStop() {
         if (mSensorControler != null) {
             mSensorControler.onStop();
+        }
+    }
+
+    public void setPreviewRotation(int angle) {
+        camera.stopPreview();
+        camera.setDisplayOrientation(angle);
+        camera.startPreview();
+    }
+    protected void setDisplayOrientation(int angle){
+        Method downPolymorphic;
+        try
+        {
+            downPolymorphic = camera.getClass().getMethod("setDisplayOrientation", new Class[] { int.class });
+            if (downPolymorphic != null)
+                downPolymorphic.invoke(camera, new Object[] { angle });
+        }
+        catch (Exception e1)
+        {
         }
     }
 }
