@@ -1,31 +1,34 @@
 package com.example.hp.challengecup.camera;
 
 import android.Manifest;
-import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
-import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.hardware.Camera;
 import android.hardware.SensorManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.OrientationEventListener;
-import android.view.Surface;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.hp.challengecup.R;
+import com.example.hp.challengecup.fragment.instance.fragment_camera.LandFragment;
+import com.example.hp.challengecup.fragment.instance.fragment_camera.PortFragment;
 import com.example.hp.challengecup.utils.PermissionUtils;
 
 import java.util.ArrayList;
@@ -38,7 +41,7 @@ import java.util.List;
  * Date         2018/6/24
  * Desc	        ${拍照界面}
  */
-public class CameraActivity extends Activity implements View.OnClickListener {
+public class CameraActivity2 extends AppCompatActivity implements View.OnClickListener {
     public final static String TAG = "CameraActivity";
     public final static String ORIENTATION_PORT = "port";
     public final static String ORIENTATION_LAND = "land";
@@ -56,25 +59,27 @@ public class CameraActivity extends Activity implements View.OnClickListener {
     private boolean isToast = true;//是否弹吐司，为了保证for循环只弹一次
 
     /**
-    private CropImageView mCropImageView;   //相机裁剪区域中部自定义CropImageView
-    private Bitmap mCropBitmap;
-    */
+     private CropImageView mCropImageView;   //相机裁剪区域中部自定义CropImageView
+     private Bitmap mCropBitmap;
+     */
     private CameraPreview mCameraPreview;   //SurfaceView
     /**
-    private View mLlCameraCropContainer;   //相机裁剪区域(上中下)
-    private ImageView mIvCameraCrop;        //相机裁剪区域中部img
-    private ImageView mIvCameraFlash;       //闪电图标
-    private View mLlCameraOption;      //操作布局
-    private View mLlCameraResult;      //拍照后操作布局
-    private Button btMakeupOut;
+     private View mLlCameraCropContainer;   //相机裁剪区域(上中下)
+     private ImageView mIvCameraCrop;        //相机裁剪区域中部img
+     private ImageView mIvCameraFlash;       //闪电图标
+     private View mLlCameraOption;      //操作布局
+     private View mLlCameraResult;      //拍照后操作布局
+     private Button btMakeupOut;
      */
 
 
-    private ImageView ivMakeup;
-    private ImageView ivNextStep;
-    private TextView tvBottom;
+//    private ImageView ivMakeup;
+//    private ImageView ivNextStep;
+//    private TextView tvBottom;
     private FrameLayout flUpperPreview;
 
+    private LandFragment landFragment = new LandFragment();
+    private PortFragment portFragment = new PortFragment();
     //2
 
 
@@ -90,7 +95,7 @@ public class CameraActivity extends Activity implements View.OnClickListener {
      * @param type     拍摄类型
      */
     public static void toCameraActivity(Activity activity, int type) {
-        Intent intent = new Intent(activity, CameraActivity.class);
+        Intent intent = new Intent(activity, CameraActivity2.class);
         intent.putExtra(TAKE_TYPE, type);
         activity.startActivityForResult(intent, REQUEST_CODE);
     }
@@ -154,10 +159,10 @@ public class CameraActivity extends Activity implements View.OnClickListener {
     }
 
     private void init() {
-        setContentView(R.layout.activity_camera);
+        setContentView(R.layout.activity_camera2);
         mType = getIntent().getIntExtra(TAKE_TYPE, 0);
         //2
-//        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
         initView();
         initListener();
@@ -166,23 +171,23 @@ public class CameraActivity extends Activity implements View.OnClickListener {
     private void initView() {
         mCameraPreview = (CameraPreview) findViewById(R.id.camera_preview);
         /**
-        mLlCameraCropContainer = findViewById(R.id.ll_camera_crop_container);
-//        mIvCameraCrop = (ImageView) findViewById(R.id.iv_camera_crop);
-        mIvCameraFlash = (ImageView) findViewById(R.id.iv_camera_flash);
-        mLlCameraOption = findViewById(R.id.ll_camera_option);
-        mLlCameraResult = findViewById(R.id.ll_camera_result);
-        mCropImageView = findViewById(R.id.crop_image_view);
-        */
+         mLlCameraCropContainer = findViewById(R.id.ll_camera_crop_container);
+         //        mIvCameraCrop = (ImageView) findViewById(R.id.iv_camera_crop);
+         mIvCameraFlash = (ImageView) findViewById(R.id.iv_camera_flash);
+         mLlCameraOption = findViewById(R.id.ll_camera_option);
+         mLlCameraResult = findViewById(R.id.ll_camera_result);
+         mCropImageView = findViewById(R.id.crop_image_view);
+         */
 
-        ivNextStep = findViewById(R.id.iv_next_step);
-        ivMakeup = findViewById(R.id.iv_makeup);
-        tvBottom =  findViewById(R.id.tv_bottom);
+//        ivNextStep = findViewById(R.id.iv_next_step);
+//        ivMakeup = findViewById(R.id.iv_makeup);
+//        tvBottom =  findViewById(R.id.tv_bottom);
         flUpperPreview = findViewById(R.id.fl_upper_preview);
         /**
-        btMakeupOut = findViewById(R.id.bt_makeup_out);
-        btMakeupOut.setOnClickListener(this);
+         btMakeupOut = findViewById(R.id.bt_makeup_out);
+         btMakeupOut.setOnClickListener(this);
          */
-        ivNextStep.setOnClickListener(this);
+//        ivNextStep.setOnClickListener(this);
         getStepString();
 
         //获取屏幕最小边，设置为cameraPreview较窄的一边
@@ -200,7 +205,7 @@ public class CameraActivity extends Activity implements View.OnClickListener {
         //cropParams 裁剪区域的大小
 //        LinearLayout.LayoutParams cropParams = new LinearLayout.LayoutParams((int) width, (int) height);
         /**
-        mLlCameraCropContainer.setLayoutParams(containerParams);
+         mLlCameraCropContainer.setLayoutParams(containerParams);
          */
         //mIvCameraCrop 的设置
 //        LinearLayout.LayoutParams cropParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.MATCH_PARENT);
@@ -239,30 +244,30 @@ public class CameraActivity extends Activity implements View.OnClickListener {
         if(stepNum==steps.size()){
             stepNum = 0;
         }
-        tvBottom.setText(steps.get(stepNum));
+//        tvBottom.setText(steps.get(stepNum));
     }
 
     private void initListener() {
         mCameraPreview.setOnClickListener(this);
         /**
-        mIvCameraFlash.setOnClickListener(this);
-        findViewById(R.id.iv_camera_close).setOnClickListener(this);
-        findViewById(R.id.iv_camera_take).setOnClickListener(this);
-        findViewById(R.id.iv_camera_result_ok).setOnClickListener(this);
-        findViewById(R.id.iv_camera_result_cancel).setOnClickListener(this);
+         mIvCameraFlash.setOnClickListener(this);
+         findViewById(R.id.iv_camera_close).setOnClickListener(this);
+         findViewById(R.id.iv_camera_take).setOnClickListener(this);
+         findViewById(R.id.iv_camera_result_ok).setOnClickListener(this);
+         findViewById(R.id.iv_camera_result_cancel).setOnClickListener(this);
          */
         //2
-//        flUpperPreview.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-//            @Override
-//            public void onGlobalLayout() {
-//                initOrientationListener();
-//                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-//                    ivMakeup.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-//                }else{
-//                    ivMakeup.getViewTreeObserver().removeGlobalOnLayoutListener(this);
-//                }
-//            }
-//        });
+        flUpperPreview.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                initOrientationListener();
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                    flUpperPreview.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                }else{
+                    flUpperPreview.getViewTreeObserver().removeGlobalOnLayoutListener(this);
+                }
+            }
+        });
         //initOrientationListener();
     }
 
@@ -274,7 +279,8 @@ public class CameraActivity extends Activity implements View.OnClickListener {
                     if(ORIENTATION_CURRENT!=ORIENTATION_PORT){
 //                        setOrientationPort();
 //                        setPortAnim();
-                        setUpperPort();
+//                        setUpperPort();
+                        setPortFragment();
                     }
                 }else if(orientation>70 && orientation<110){
 
@@ -284,7 +290,8 @@ public class CameraActivity extends Activity implements View.OnClickListener {
                     if(ORIENTATION_CURRENT!=ORIENTATION_LAND){
 //                        setOrientationLandLeft();
 //                        setLandAnim();
-                        setUpperLand();
+//                        setUpperLand();
+                        setLandFragment();
                     }
                 }
             }
@@ -296,6 +303,22 @@ public class CameraActivity extends Activity implements View.OnClickListener {
             Log.v(TAG, "Cannot detect orientation");
             listener.disable();
         }
+    }
+
+    private void setLandFragment() {
+//        flUpperPreview.removeAllViews();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.replace(R.id.fl_upper_preview,landFragment);
+        transaction.commit();
+    }
+
+    private void setPortFragment() {
+//        flUpperPreview.removeAllViews();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.replace(R.id.fl_upper_preview,portFragment);
+        transaction.commit();
     }
 
     private void setUpperLand() {
@@ -312,38 +335,38 @@ public class CameraActivity extends Activity implements View.OnClickListener {
         flUpperPreview.addView(v);
     }
 
-    private void setPortAnim() {
-        final ValueAnimator anim = ValueAnimator.ofInt((int) ivMakeup.getRotation(),-90);
-        anim.setDuration(300);
-        anim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator animation) {
-                int angle = (int) animation.getAnimatedValue();
-                ivMakeup.setRotation(angle);
-//                Log.e(TAG, "onAnimationUpdate: ivMake angle "+angle);
-                ivMakeup.setVisibility(View.VISIBLE);
-            }
-        });
-        anim.start();
-        getViewInfo(ivMakeup,"iv_makeup");
-        ORIENTATION_CURRENT = ORIENTATION_PORT;
-    }
-    private void setLandAnim() {
-        final ValueAnimator anim = ValueAnimator.ofInt((int) ivMakeup.getRotation(),0);
-        anim.setDuration(300);
-        anim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator animation) {
-                int angle = (int) animation.getAnimatedValue();
-                ivMakeup.setRotation(angle);
-//                Log.e(TAG, "onAnimationUpdate: ivMake angle "+angle);
-                ivMakeup.setVisibility(View.VISIBLE);
-            }
-        });
-        anim.start();
-        getViewInfo(ivMakeup,"iv_makeup");
-        ORIENTATION_CURRENT = ORIENTATION_LAND;
-    }
+//    private void setPortAnim() {
+//        final ValueAnimator anim = ValueAnimator.ofInt((int) ivMakeup.getRotation(),-90);
+//        anim.setDuration(300);
+//        anim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+//            @Override
+//            public void onAnimationUpdate(ValueAnimator animation) {
+//                int angle = (int) animation.getAnimatedValue();
+//                ivMakeup.setRotation(angle);
+////                Log.e(TAG, "onAnimationUpdate: ivMake angle "+angle);
+//                ivMakeup.setVisibility(View.VISIBLE);
+//            }
+//        });
+//        anim.start();
+//        getViewInfo(ivMakeup,"iv_makeup");
+//        ORIENTATION_CURRENT = ORIENTATION_PORT;
+//    }
+//    private void setLandAnim() {
+//        final ValueAnimator anim = ValueAnimator.ofInt((int) ivMakeup.getRotation(),0);
+//        anim.setDuration(300);
+//        anim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+//            @Override
+//            public void onAnimationUpdate(ValueAnimator animation) {
+//                int angle = (int) animation.getAnimatedValue();
+//                ivMakeup.setRotation(angle);
+////                Log.e(TAG, "onAnimationUpdate: ivMake angle "+angle);
+//                ivMakeup.setVisibility(View.VISIBLE);
+//            }
+//        });
+//        anim.start();
+//        getViewInfo(ivMakeup,"iv_makeup");
+//        ORIENTATION_CURRENT = ORIENTATION_LAND;
+//    }
 
     private void getViewInfo(View v,String name){
         Log.e(name, "left  = "+v.getLeft());
@@ -367,7 +390,7 @@ public class CameraActivity extends Activity implements View.OnClickListener {
         } else if (id == R.id.iv_camera_flash) {
             boolean isFlashOn = mCameraPreview.switchFlashLight();
             /**
-            mIvCameraFlash.setImageResource(isFlashOn ? R.drawable.camera_flash_on : R.drawable.camera_flash_off);
+             mIvCameraFlash.setImageResource(isFlashOn ? R.drawable.camera_flash_on : R.drawable.camera_flash_off);
              */
         } else if (id == R.id.iv_camera_result_ok) {
             confirm();
@@ -375,7 +398,7 @@ public class CameraActivity extends Activity implements View.OnClickListener {
             mCameraPreview.setEnabled(true);
             mCameraPreview.startPreview();
             /**
-            mIvCameraFlash.setImageResource(R.drawable.camera_flash_off);
+             mIvCameraFlash.setImageResource(R.drawable.camera_flash_off);
              */
             setTakePhotoLayout();
         }else if(id == R.id.bt_makeup_out){
@@ -425,8 +448,8 @@ public class CameraActivity extends Activity implements View.OnClickListener {
 //                                (int) ((right - left) * (float) bitmap.getWidth()),
 //                                (int) ((bottom - top) * (float) bitmap.getHeight()));
                         /**
-                        mCropBitmap = Bitmap.createBitmap(bitmap,0,0,bitmap.getWidth(),bitmap.getHeight());
-                        */
+                         mCropBitmap = Bitmap.createBitmap(bitmap,0,0,bitmap.getWidth(),bitmap.getHeight());
+                         */
                         /*手动裁剪*/
                         runOnUiThread(new Runnable() {
                             @Override
@@ -441,7 +464,7 @@ public class CameraActivity extends Activity implements View.OnClickListener {
 //                                Log.e(TAG, "crop width="+mCropImageView.getMeasuredHeight());
                                 setCropLayout();
                                 /**
-                                mCropImageView.setImageBitmap(mCropBitmap);
+                                 mCropImageView.setImageBitmap(mCropBitmap);
                                  */
                             }
                         });
@@ -458,11 +481,11 @@ public class CameraActivity extends Activity implements View.OnClickListener {
 //        mIvCameraCrop.setVisibility(View.GONE);
         mCameraPreview.setVisibility(View.GONE);
         /**
-        mLlCameraOption.setVisibility(View.GONE);
-        mCropImageView.setVisibility(View.VISIBLE);
-        mLlCameraResult.setVisibility(View.VISIBLE);
+         mLlCameraOption.setVisibility(View.GONE);
+         mCropImageView.setVisibility(View.VISIBLE);
+         mLlCameraResult.setVisibility(View.VISIBLE);
          */
-        tvBottom.setText("");
+//        tvBottom.setText("");
     }
 
     /**
@@ -472,11 +495,11 @@ public class CameraActivity extends Activity implements View.OnClickListener {
 //        mIvCameraCrop.setVisibility(View.VISIBLE);
         mCameraPreview.setVisibility(View.VISIBLE);
         /**
-        mLlCameraOption.setVisibility(View.VISIBLE);
-        mCropImageView.setVisibility(View.GONE);
-        mLlCameraResult.setVisibility(View.GONE);
+         mLlCameraOption.setVisibility(View.VISIBLE);
+         mCropImageView.setVisibility(View.GONE);
+         mLlCameraResult.setVisibility(View.GONE);
          */
-        tvBottom.setText(getString(R.string.touch_to_focus));
+//        tvBottom.setText(getString(R.string.touch_to_focus));
 
         mCameraPreview.focus();
     }
@@ -487,34 +510,34 @@ public class CameraActivity extends Activity implements View.OnClickListener {
     private void confirm() {
         /*裁剪图片*/
         /**
-        mCropImageView.crop(new CropListener() {
-            @Override
-            public void onFinish(Bitmap bitmap) {
-                if(bitmap == null) {
-                    Toast.makeText(getApplicationContext(), getString(R.string.crop_fail), Toast.LENGTH_SHORT).show();
-                    finish();
-                }
+         mCropImageView.crop(new CropListener() {
+        @Override
+        public void onFinish(Bitmap bitmap) {
+        if(bitmap == null) {
+        Toast.makeText(getApplicationContext(), getString(R.string.crop_fail), Toast.LENGTH_SHORT).show();
+        finish();
+        }
 
-//              保存图片到sdcard并返回图片路径
-                if (FileUtils.createOrExistsDir(Constant.DIR_ROOT)) {
-                    StringBuffer buffer = new StringBuffer();
-                    String imagePath = "";
-                    if (mType == TYPE_IDCARD_FRONT) {
-                        imagePath = buffer.append(Constant.DIR_ROOT).append(Constant.APP_NAME).append(".").append("idCardFrontCrop.jpg").toString();
-                    } else if (mType == TYPE_IDCARD_BACK) {
-                        imagePath = buffer.append(Constant.DIR_ROOT).append(Constant.APP_NAME).append(".").append("idCardBackCrop.jpg").toString();
-                    }
+        //              保存图片到sdcard并返回图片路径
+        if (FileUtils.createOrExistsDir(Constant.DIR_ROOT)) {
+        StringBuffer buffer = new StringBuffer();
+        String imagePath = "";
+        if (mType == TYPE_IDCARD_FRONT) {
+        imagePath = buffer.append(Constant.DIR_ROOT).append(Constant.APP_NAME).append(".").append("idCardFrontCrop.jpg").toString();
+        } else if (mType == TYPE_IDCARD_BACK) {
+        imagePath = buffer.append(Constant.DIR_ROOT).append(Constant.APP_NAME).append(".").append("idCardBackCrop.jpg").toString();
+        }
 
-                    if (ImageUtils.save(bitmap, imagePath, Bitmap.CompressFormat.JPEG)) {
-                        Intent intent = new Intent();
-                        intent.putExtra(CameraActivity.IMAGE_PATH, imagePath);
-                        setResult(RESULT_CODE, intent);
-                        finish();
-                    }
-                }
-            }
+        if (ImageUtils.save(bitmap, imagePath, Bitmap.CompressFormat.JPEG)) {
+        Intent intent = new Intent();
+        intent.putExtra(CameraActivity.IMAGE_PATH, imagePath);
+        setResult(RESULT_CODE, intent);
+        finish();
+        }
+        }
+        }
         }, true);
-*/
+         */
     }
 
     @Override
@@ -543,21 +566,21 @@ public class CameraActivity extends Activity implements View.OnClickListener {
     }
 
     //不会更换布局，只是将同一个布局进行旋转。
-    @Override
-    public void onConfigurationChanged(Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
-        Log.e(TAG, "onConfigurationChanged: rotation"+getWindowManager().getDefaultDisplay().getRotation());
-        if (getWindowManager().getDefaultDisplay().getRotation() == Surface.ROTATION_0) {
-            mCameraPreview.setDisplayOrientation(90);
-            setUpperPort();
-        }else if(getWindowManager().getDefaultDisplay().getRotation() == Surface.ROTATION_90){
-            mCameraPreview.setDisplayOrientation(0);
-            setUpperLand();
-        }else if(getWindowManager().getDefaultDisplay().getRotation() == Surface.ROTATION_180){
-            mCameraPreview.setDisplayOrientation(90);
-        }else if(getWindowManager().getDefaultDisplay().getRotation() == Surface.ROTATION_270){
-            mCameraPreview.setDisplayOrientation(180);
-            setUpperLand();
-        }
-    }
+//    @Override
+//    public void onConfigurationChanged(Configuration newConfig) {
+//        super.onConfigurationChanged(newConfig);
+//        Log.e(TAG, "onConfigurationChanged: rotation"+getWindowManager().getDefaultDisplay().getRotation());
+//        if (getWindowManager().getDefaultDisplay().getRotation() == Surface.ROTATION_0) {
+//            mCameraPreview.setDisplayOrientation(90);
+//            setUpperPort();
+//        }else if(getWindowManager().getDefaultDisplay().getRotation() == Surface.ROTATION_90){
+//            mCameraPreview.setDisplayOrientation(0);
+//            setUpperLand();
+//        }else if(getWindowManager().getDefaultDisplay().getRotation() == Surface.ROTATION_180){
+//            mCameraPreview.setDisplayOrientation(90);
+//        }else if(getWindowManager().getDefaultDisplay().getRotation() == Surface.ROTATION_270){
+//            mCameraPreview.setDisplayOrientation(180);
+//            setUpperLand();
+//        }
+//    }
 }

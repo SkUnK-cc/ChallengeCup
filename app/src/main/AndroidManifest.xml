@@ -23,6 +23,8 @@
         <activity android:name=".camera.CameraActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen"/>
+        <activity android:name=".camera.CameraActivity2"
+            android:theme="@style/AppCompatFullScreenTheme" />
         <activity android:name=".mvp.activity.RegisterActivity"/>
         <activity android:name=".mvp.activity.RegisterTwoActivity" />
         <activity android:name=".mvp.activity.MatchActivity"/>
