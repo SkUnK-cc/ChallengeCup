@@ -6,6 +6,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
 import com.example.hp.challengecup.mvp.BasePresenter;
 import com.example.hp.challengecup.mvp.IBaseView;
@@ -18,6 +19,7 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.e(getClass().getName(), "onCreate");
         doBeforeContentView();
         setContentView(getContentView());
         ButterKnife.bind(this);
@@ -34,6 +36,36 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
         initData();
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.e(getClass().getName(), "onStart");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.e(getClass().getName(), "onResume");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.e(getClass().getName(), "onPause");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.e(getClass().getName(), "onStop");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.e(getClass().getName(), "onDestroy");
+    }
+
     protected abstract void doBeforeContentView();
 
     protected abstract void initData();
@@ -44,4 +76,5 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
 
     protected abstract int getContentView();
     protected abstract void initPresenter();
+
 }

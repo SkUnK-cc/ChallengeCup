@@ -44,6 +44,8 @@ public class CameraActivity extends Activity implements View.OnClickListener {
     public final static String ORIENTATION_LAND = "land";
     public String ORIENTATION_CURRENT = "";
 
+    public final static String BUNDLE_STEP_NUM = "STEP_NUM";
+
     public final static int    TYPE_IDCARD_FRONT      = 1;//身份证正面
     public final static int    TYPE_IDCARD_BACK       = 2;//身份证反面
     public final static int    REQUEST_CODE           = 0X11;//请求码
@@ -112,7 +114,7 @@ public class CameraActivity extends Activity implements View.OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        Log.e(getClass().getName(), "onCreate");
         /*动态请求需要的权限*/
         boolean checkPermissionFirst = PermissionUtils.checkPermissionFirst(this, PERMISSION_CODE_FIRST,
                 new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.CAMERA});
@@ -290,10 +292,8 @@ public class CameraActivity extends Activity implements View.OnClickListener {
             }
         };
         if (listener.canDetectOrientation()) {
-            Log.v(TAG, "Can detect orientation");
             listener.enable();
         } else {
-            Log.v(TAG, "Cannot detect orientation");
             listener.disable();
         }
     }
@@ -303,6 +303,16 @@ public class CameraActivity extends Activity implements View.OnClickListener {
         View v = inflater.inflate(R.layout.upper_camera_land,null);
         flUpperPreview.removeAllViews();
         flUpperPreview.addView(v);
+        ORIENTATION_CURRENT = ORIENTATION_LAND;
+        initUpperView(v);
+    }
+
+    private void initUpperView(View v) {
+        tvBottom = v.findViewById(R.id.tv_bottom);
+        getStepString();
+        ivNextStep = v.findViewById(R.id.iv_next_step);
+        ivNextStep.setOnClickListener(this);
+        ivMakeup = v.findViewById(R.id.iv_makeup);
     }
 
     private void setUpperPort() {
@@ -310,6 +320,8 @@ public class CameraActivity extends Activity implements View.OnClickListener {
         View v = inflater.inflate(R.layout.upper_camera_port,null);
         flUpperPreview.removeAllViews();
         flUpperPreview.addView(v);
+        ORIENTATION_CURRENT = ORIENTATION_PORT;
+        initUpperView(v);
     }
 
     private void setPortAnim() {
@@ -520,6 +532,7 @@ public class CameraActivity extends Activity implements View.OnClickListener {
     @Override
     protected void onStart() {
         super.onStart();
+        Log.e(getClass().getName(), "onStart");
         if (mCameraPreview != null) {
             mCameraPreview.onStart();
         }
@@ -528,6 +541,8 @@ public class CameraActivity extends Activity implements View.OnClickListener {
     @Override
     protected void onStop() {
         super.onStop();
+        Log.e(getClass().getName(), "onStop");
+
         if (mCameraPreview != null) {
             mCameraPreview.onStop();
         }
@@ -536,6 +551,7 @@ public class CameraActivity extends Activity implements View.OnClickListener {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        Log.e(getClass().getName(), "onDestroy");
         //2
         if(listener!=null) {
             listener.disable();
@@ -543,6 +559,7 @@ public class CameraActivity extends Activity implements View.OnClickListener {
     }
 
     //不会更换布局，只是将同一个布局进行旋转。
+    //不会执行生命周期
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
@@ -559,5 +576,17 @@ public class CameraActivity extends Activity implements View.OnClickListener {
             mCameraPreview.setDisplayOrientation(180);
             setUpperLand();
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.e(getClass().getName(), "onResume");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.e(getClass().getName(), "onPause");
     }
 }
