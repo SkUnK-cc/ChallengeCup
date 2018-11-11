@@ -72,7 +72,8 @@ public class RoundImageView extends android.support.v7.widget.AppCompatImageView
     }
 
     @Override protected void onDraw(Canvas canvas) {
-        //super.onDraw(canvas);
+        // 不能执行super.onDraw()方法，那样父类会直接画出图片，没有圆角效果
+//        super.onDraw(canvas);
         if (getDrawable() == null) {
             return;
         }
@@ -118,8 +119,10 @@ public class RoundImageView extends android.support.v7.widget.AppCompatImageView
         mPaint.setAntiAlias(true);
         TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.RoundImageView);
 
+
         //如果没设置圆角的默认值，在这设置默认值为10dp
-        mBorderRadius = dp2px(BODER_RADIUS_DEFAULT);
+//        mBorderRadius = dp2px(BODER_RADIUS_DEFAULT);
+        mBorderRadius = dp2px((int) array.getDimension(R.styleable.RoundImageView_borderRadius,BODER_RADIUS_DEFAULT));
         // 默认为Circle
         //type = array.getInt(R.styleable.RoundImageView_type, TYPE_CIRCLE);
         type = array.getInt(R.styleable.RoundImageView_type, TYPE_ROUND);

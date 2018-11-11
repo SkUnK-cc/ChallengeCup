@@ -3,7 +3,6 @@ package com.example.hp.challengecup.camera;
 import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -162,7 +161,7 @@ public class CameraActivity2 extends AppCompatActivity implements View.OnClickLi
         setContentView(R.layout.activity_camera2);
         mType = getIntent().getIntExtra(TAKE_TYPE, 0);
         //2
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+//        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
         initView();
         initListener();

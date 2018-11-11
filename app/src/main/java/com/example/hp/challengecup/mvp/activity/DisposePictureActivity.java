@@ -113,6 +113,7 @@ public class DisposePictureActivity extends BaseActivity implements View.OnClick
                 break;
             case R.id.bt_makeup:
                 CameraActivity.toCameraActivity(this, CameraActivity.TYPE_IDCARD_FRONT);
+//                CameraActivity2.toCameraActivity(this,CameraActivity2.TYPE_IDCARD_FRONT);
                 break;
             case R.id.bt_upload:
 //                uploadImg();
