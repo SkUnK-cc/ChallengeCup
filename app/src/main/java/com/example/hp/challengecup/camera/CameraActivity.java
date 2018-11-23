@@ -39,6 +39,11 @@ import java.util.List;
  * Desc	        ${拍照界面}
  */
 public class CameraActivity extends Activity implements View.OnClickListener {
+    /**
+     * 两种情况：
+     * 1.固定布局方向：需要一个横向布局文件，textView横向有bug
+     * 2.旋转布局：会出现卡顿
+     */
     public final static String TAG = "CameraActivity";
     public final static String ORIENTATION_PORT = "port";
     public final static String ORIENTATION_LAND = "land";
