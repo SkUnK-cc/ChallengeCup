@@ -3,6 +3,8 @@ package com.example.hp.challengecup.mvp.activity;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.hp.challengecup.R;
 import com.example.hp.challengecup.utils.DensityUtil;
 
@@ -38,9 +40,8 @@ public class RegisterTwoActivity extends BaseActivity implements View.OnClickLis
     @Override
     protected void initView() {
 //        Glide.with(this)
-//                .load(R.drawable.add)
 //                .asBitmap()
-//                .centerCrop()
+//                .load(R.drawable.comm_recy_hori_3)
 //                .into(new BitmapImageViewTarget(ivHead){
 //                    @Override
 //                    protected void setResource(Bitmap resource) {
@@ -57,7 +58,14 @@ public class RegisterTwoActivity extends BaseActivity implements View.OnClickLis
 //                        }
 //                    }
 //                });
+        RequestOptions options = RequestOptions.circleCropTransform();
+        Glide.with(this)
+                .asBitmap()
+                .load(R.drawable.comm_recy_hori_3)
+                .apply(options)
+                .into(ivHead);
         ivBack.setOnClickListener(this);
+        ivHead.setOnClickListener(this);
     }
 
     @Override
@@ -69,6 +77,9 @@ public class RegisterTwoActivity extends BaseActivity implements View.OnClickLis
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.iv_registertwo_back:
+                finish();
+                break;
+            case R.id.bt_register_finish:
                 finish();
                 break;
             default:

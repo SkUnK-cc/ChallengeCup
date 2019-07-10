@@ -184,6 +184,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                     startActivity(intent);
                 }
                 break;
+            default:
+                super.onActivityResult(requestCode,resultCode,data);
+                break;
         }
     }
 

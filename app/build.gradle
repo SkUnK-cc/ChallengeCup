@@ -39,13 +39,13 @@ dependencies {
     //卡片
     implementation 'com.android.support:cardview-v7:28.0.0'
     //glide
-    implementation 'com.github.bumptech.glide:glide:3.7.0'
+    implementation 'com.github.bumptech.glide:glide:4.7.1'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.7.1'
     //圆形图片
     implementation 'de.hdodenhof:circleimageview:2.2.0'
     //圆角ViewGroup
     implementation 'com.github.fxc0719:RoundCornerLayout:1.0.2'
     implementation 'com.skyline.widget:round-corner-layout:1.0.1'
-
 
     //网络请求
     implementation 'io.reactivex.rxjava2:rxjava:2.1.3'
@@ -56,4 +56,7 @@ dependencies {
     implementation 'com.squareup.okhttp3:okhttp:3.9.0'
     implementation 'com.squareup.okhttp3:logging-interceptor:3.9.0'
     implementation 'com.squareup.retrofit2:converter-scalars:2.3.0'
+
+    implementation 'com.github.wuxiaogui593:MyWidgetLib:v1.1'
+
 }

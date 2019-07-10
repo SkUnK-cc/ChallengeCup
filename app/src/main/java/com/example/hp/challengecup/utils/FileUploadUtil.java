@@ -23,8 +23,11 @@ public class FileUploadUtil {
         Log.e("upload image", "file name: "+file.getName());
         MultipartBody.Builder builder = new MultipartBody.Builder()
                 .setType(MultipartBody.FORM)
-                .addFormDataPart("img",file.getName(),
-                        RequestBody.create(MediaType.parse("image/jpg"),file));
+                .addFormDataPart(
+                        "img",
+                        file.getName(),
+                        RequestBody.create(MediaType.parse("image/jpg"),file)
+                );
         RequestBody requestBody = builder.build();
 
         Request request = new Request.Builder()

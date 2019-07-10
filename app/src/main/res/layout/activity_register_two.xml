@@ -30,6 +30,7 @@
         android:hint="输入新用户名"
         android:layout_gravity="center_horizontal"/>
     <Button
+        android:id="@+id/bt_register_finish"
         android:layout_width="329dp"
         android:layout_height="57dp"
         android:text="完成注册并登录"

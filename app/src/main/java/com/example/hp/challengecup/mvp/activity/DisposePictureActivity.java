@@ -44,6 +44,8 @@ public class DisposePictureActivity extends BaseActivity implements View.OnClick
     public static final int OPEN_ALBUM = 2;
     public static final int PERMISSION_REQUEST_CODE = 3;
 
+    @Bind(R.id.iv_register_back)
+    ImageView ivBack;
     @Bind(R.id.show_picture)
     ImageView ivShowPicture;
     @Bind(R.id.bt_open_camera)
@@ -83,6 +85,7 @@ public class DisposePictureActivity extends BaseActivity implements View.OnClick
        btOpenAlbum.setOnClickListener(this);
        btMakeup.setOnClickListener(this);
        btUpload.setOnClickListener(this);
+       ivBack.setOnClickListener(this);
     }
 
     private void disposeIntent(){
@@ -119,6 +122,10 @@ public class DisposePictureActivity extends BaseActivity implements View.OnClick
 //                uploadImg();
 //                registerTest();
                 matchActivity();
+                break;
+            case R.id.iv_register_back:
+                finish();
+                break;
             default:
                 break;
         }

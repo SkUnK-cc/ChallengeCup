@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.hp.challengecup">
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.CAMERA"/>
-    <uses-permission android:name="android.permission.FLASHLIGHT"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.FLASHLIGHT" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -13,22 +15,26 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".mvp.activity.MainActivity"
+        <activity
+            android:name=".mvp.activity.MainActivity"
             android:hardwareAccelerated="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".mvp.activity.DisposePictureActivity"/>
-        <activity android:name=".camera.CameraActivity"
+        <activity android:name=".mvp.activity.DisposePictureActivity" />
+        <activity
+            android:name=".camera.CameraActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
-            android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen"/>
-        <activity android:name=".camera.CameraActivity2"
+            android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen" />
+        <activity
+            android:name=".camera.CameraActivity2"
             android:theme="@style/AppCompatFullScreenTheme" />
-        <activity android:name=".mvp.activity.RegisterActivity"/>
+        <activity android:name=".mvp.activity.RegisterActivity" />
         <activity android:name=".mvp.activity.RegisterTwoActivity" />
-        <activity android:name=".mvp.activity.MatchActivity"/>
+        <activity android:name=".mvp.activity.MatchActivity" />
 
         <provider
             android:name="android.support.v4.content.FileProvider"
@@ -37,8 +43,10 @@
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths"/>
+                android:resource="@xml/file_paths" />
         </provider>
+
+        <activity android:name=".mvp.activity.LoginActivity"></activity>
     </application>
 
 </manifest>

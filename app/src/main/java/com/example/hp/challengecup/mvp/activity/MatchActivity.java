@@ -36,6 +36,11 @@ public class MatchActivity extends BaseActivity implements View.OnClickListener 
 
     private boolean isNextPage = true;
     @Override
+    protected int getContentView() {
+        return R.layout.activity_match;
+    }
+
+    @Override
     protected void doBeforeContentView() {
         DensityUtil.setCustomDensity(this,getApplication(),375);
     }
@@ -101,11 +106,6 @@ public class MatchActivity extends BaseActivity implements View.OnClickListener 
             resultList.add(new MatchResultItem(array.getResourceId(i,0)));
         }
         resultAdapter.notifyDataSetChanged();
-    }
-
-    @Override
-    protected int getContentView() {
-        return R.layout.activity_match;
     }
 
     @Override

@@ -18,6 +18,8 @@ import butterknife.Bind;
 
 public class RegisterActivity extends BaseActivity implements View.OnClickListener {
     public static final int REQUEST_CODE_REGISTER_TWO = 14;
+    public static final int REGISTER_SUCCESS=3;
+
     @Bind(R.id.iv_register_back)
     ImageView ivBack;
     @Bind(R.id.bt_register_next)
